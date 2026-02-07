@@ -1,0 +1,16 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Maroon background -->
+  <rect width="32" height="32" fill="#800020" rx="4"/>
+  
+  <!-- Video play button -->
+  <circle cx="16" cy="16" r="12" fill="#ffffff" opacity="0.9"/>
+  <path d="M12 10 L12 22 L22 16 Z" fill="#800020"/>
+  
+  <!-- Scissors icon overlay -->
+  <g transform="translate(20, 8) scale(0.6)">
+    <path d="M8 4 L12 8 L8 12 L4 8 Z" fill="#ffffff"/>
+    <path d="M12 4 L16 8 L12 12 L8 8 Z" fill="#ffffff"/>
+    <circle cx="6" cy="6" r="1.5" fill="#800020"/>
+    <circle cx="14" cy="10" r="1.5" fill="#800020"/>
+  </g>
+</svg>

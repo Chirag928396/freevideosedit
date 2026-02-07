@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="formatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#formatGrad)"/>
+  <g transform="translate(400, 200)">
+    <!-- File icons with different formats -->
+    <g transform="translate(-110, -40)">
+      <rect width="60" height="80" rx="4" fill="white" opacity="0.9"/>
+      <path d="M 40 0 L 60 0 L 60 20 L 40 20 Z" fill="url(#formatGrad)" opacity="0.3"/>
+      <text x="30" y="50" font-family="monospace" font-size="18" font-weight="bold" fill="url(#formatGrad)" text-anchor="middle">MP4</text>
+    </g>
+    
+    <g transform="translate(-30, -40)">
+      <rect width="60" height="80" rx="4" fill="white" opacity="0.9"/>
+      <path d="M 40 0 L 60 0 L 60 20 L 40 20 Z" fill="url(#formatGrad)" opacity="0.3"/>
+      <text x="30" y="50" font-family="monospace" font-size="18" font-weight="bold" fill="url(#formatGrad)" text-anchor="middle">MOV</text>
+    </g>
+    
+    <g transform="translate(50, -40)">
+      <rect width="60" height="80" rx="4" fill="white" opacity="0.9"/>
+      <path d="M 40 0 L 60 0 L 60 20 L 40 20 Z" fill="url(#formatGrad)" opacity="0.3"/>
+      <text x="30" y="48" font-family="monospace" font-size="14" font-weight="bold" fill="url(#formatGrad)" text-anchor="middle">WEBM</text>
+    </g>
+    
+    <!-- Conversion arrows -->
+    <path d="M -85 70 Q -40 90 0 70" stroke="white" stroke-width="3" fill="none" opacity="0.6" stroke-dasharray="5,5"/>
+    <path d="M 0 70 Q 40 90 85 70" stroke="white" stroke-width="3" fill="none" opacity="0.6" stroke-dasharray="5,5"/>
+  </g>
+  <text x="400" y="340" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">Video Formats</text>
+</svg>
