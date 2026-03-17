@@ -228,19 +228,25 @@ export default function VideoConverterPage() {
                     title: "Multiple Formats",
                     description:
                       "Support for all popular video and audio formats including MP4, AVI, MOV, MP3, and GIF.",
-                    icon: <FileVideo className="w-6 h-6 text-white dark:text-black" />,
+                    icon: (
+                      <FileVideo className="w-6 h-6 text-white dark:text-black" />
+                    ),
                   },
                   {
                     title: "Fast Conversion",
                     description:
                       "Convert videos directly in your browser using advanced WASM technology.",
-                    icon: <Zap className="w-6 h-6 text-white dark:text-black" />,
+                    icon: (
+                      <Zap className="w-6 h-6 text-white dark:text-black" />
+                    ),
                   },
                   {
                     title: "High Quality",
                     description:
                       "Maintain the highest possible quality during conversion with optimized codecs.",
-                    icon: <RefreshCw className="w-6 h-6 text-white dark:text-black" />,
+                    icon: (
+                      <RefreshCw className="w-6 h-6 text-white dark:text-black" />
+                    ),
                   },
                 ]}
               />

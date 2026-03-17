@@ -244,7 +244,10 @@ export default function AddWatermarkPage() {
                   },
                   {
                     icon: (
-                      <Type className="w-6 h-6 text-white dark:text-black" strokeWidth={2.5} />
+                      <Type
+                        className="w-6 h-6 text-white dark:text-black"
+                        strokeWidth={2.5}
+                      />
                     ),
                     title: "Text & Image Support",
                     description:
@@ -252,7 +255,10 @@ export default function AddWatermarkPage() {
                   },
                   {
                     icon: (
-                      <Zap className="w-6 h-6 text-white dark:text-black" strokeWidth={2.5} />
+                      <Zap
+                        className="w-6 h-6 text-white dark:text-black"
+                        strokeWidth={2.5}
+                      />
                     ),
                     title: "Real-Time Preview",
                     description:
@@ -260,7 +266,10 @@ export default function AddWatermarkPage() {
                   },
                   {
                     icon: (
-                      <Globe className="w-6 h-6 text-white dark:text-black" strokeWidth={2.5} />
+                      <Globe
+                        className="w-6 h-6 text-white dark:text-black"
+                        strokeWidth={2.5}
+                      />
                     ),
                     title: "Works Everywhere",
                     description:

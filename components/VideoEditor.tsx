@@ -21,7 +21,7 @@ export default function VideoEditor() {
   const [isSelecting, setIsSelecting] = useState(false);
   const [selectionStart, setSelectionStart] = useState<number | null>(null);
   const [selectionPreviewEnd, setSelectionPreviewEnd] = useState<number | null>(
-    null
+    null,
   );
   const [pendingSelectionStart, setPendingSelectionStart] = useState<
     number | null
@@ -124,8 +124,8 @@ export default function VideoEditor() {
               start: Math.floor(clampedStart),
               end: Math.ceil(clampedEnd),
             }
-          : r
-      )
+          : r,
+      ),
     );
   };
 
@@ -180,15 +180,25 @@ export default function VideoEditor() {
   };
 
   return (
-    <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-zinc-800/50 p-6 shadow-2xl">
+    <div className="bg-white dark:bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-zinc-800/50 p-6 shadow-sm dark:shadow-2xl">
       {!videoUrl ? (
         <label htmlFor="video-upload" className="cursor-pointer block">
-          <div className="border-2 border-dashed border-zinc-700/50 rounded-xl p-16 hover:border-primary hover:bg-zinc-800/30 transition-all duration-300 text-center group">
-            <Upload className="w-16 h-16 text-zinc-600 group-hover:text-primary mx-auto mb-4 transition-colors" />
-            <p className="text-white font-semibold mb-2 text-lg">
-              Click to upload video
+          <div className="border-2 border-dashed border-gray-200 dark:border-zinc-700/50 rounded-2xl p-16 hover:border-blue-400 dark:hover:border-white/40 hover:bg-blue-50/40 dark:hover:bg-zinc-800/30 transition-all duration-300 text-center group">
+            <div className="mx-auto mb-5 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <Upload className="w-8 h-8 text-white" />
+            </div>
+            <p className="text-gray-800 dark:text-white font-bold mb-2 text-xl">
+              Drop your video here
             </p>
-            <p className="text-zinc-500 text-sm">MP4, WebM, MOV • Max 500MB</p>
+            <p className="text-gray-500 dark:text-zinc-400 text-sm mb-5">
+              or click to browse from your device
+            </p>
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-black rounded-lg font-semibold text-sm group-hover:bg-gray-700 dark:group-hover:bg-gray-200 transition-colors">
+              <Upload className="w-4 h-4" /> Choose File
+            </div>
+            <p className="text-gray-400 dark:text-zinc-600 text-xs mt-4">
+              MP4, WebM, MOV, AVI • Max 500MB
+            </p>
           </div>
           <input
             id="video-upload"
@@ -213,31 +223,31 @@ export default function VideoEditor() {
           {duration > 0 && (
             <>
               {/* Timeline with Range Selection */}
-              <div className="bg-zinc-800/50 backdrop-blur-sm rounded-xl p-4 border border-zinc-700/50">
-                <div className="flex justify-between text-base text-zinc-400 mb-3">
-                  <span className="text-primary">
+              <div className="bg-gray-100 dark:bg-zinc-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-zinc-700/50">
+                <div className="flex justify-between text-base text-gray-600 dark:text-zinc-400 mb-3">
+                  <span className="text-blue-600 dark:text-white font-medium">
                     {formatTime(currentTime)}
                   </span>
                   <span>{formatTime(duration)}</span>
                 </div>
                 <div className="text-center mb-3">
-                  <span className="text-sm text-zinc-500">
+                  <span className="text-sm text-gray-500 dark:text-zinc-500">
                     Drag to highlight or click once to set start and again to
                     set end
                   </span>
                 </div>
                 {pendingSelectionStart !== null && (
-                  <p className="text-center text-amber-400 text-sm mb-3">
+                  <p className="text-center text-amber-600 dark:text-amber-400 text-sm mb-3">
                     Start marked at {formatTime(pendingSelectionStart)} – click
                     end point to create a cut
                   </p>
                 )}
                 <div
-                  className="h-10 bg-zinc-900/80 rounded-lg relative cursor-crosshair select-none overflow-hidden border border-zinc-700/30 shadow-inner"
+                  className="h-10 bg-gray-200 dark:bg-zinc-900/80 rounded-lg relative cursor-crosshair select-none overflow-hidden border border-gray-300 dark:border-zinc-700/30 shadow-inner"
                   onMouseDown={(e) => {
                     const rect = e.currentTarget.getBoundingClientRect();
                     const time = clampTime(
-                      ((e.clientX - rect.left) / rect.width) * duration
+                      ((e.clientX - rect.left) / rect.width) * duration,
                     );
                     setIsSelecting(true);
                     setSelectionStart(time);
@@ -246,7 +256,7 @@ export default function VideoEditor() {
                   onMouseMove={(e) => {
                     const rect = e.currentTarget.getBoundingClientRect();
                     const time = clampTime(
-                      ((e.clientX - rect.left) / rect.width) * duration
+                      ((e.clientX - rect.left) / rect.width) * duration,
                     );
                     if (isSelecting && selectionStart !== null) {
                       setSelectionPreviewEnd(time);
@@ -257,7 +267,7 @@ export default function VideoEditor() {
                   onMouseUp={(e) => {
                     const rect = e.currentTarget.getBoundingClientRect();
                     const releasedTime = clampTime(
-                      ((e.clientX - rect.left) / rect.width) * duration
+                      ((e.clientX - rect.left) / rect.width) * duration,
                     );
 
                     let handled = false;
@@ -274,7 +284,7 @@ export default function VideoEditor() {
                         setPendingSelectionStart(releasedTime);
                       } else {
                         const diff = Math.abs(
-                          releasedTime - pendingSelectionStart
+                          releasedTime - pendingSelectionStart,
                         );
                         if (diff >= 0.5) {
                           appendCutRange(pendingSelectionStart, releasedTime);
@@ -343,14 +353,14 @@ export default function VideoEditor() {
                           left: `${
                             (Math.min(
                               pendingSelectionStart,
-                              selectionPreviewEnd
+                              selectionPreviewEnd,
                             ) /
                               duration) *
                             100
                           }%`,
                           width: `${
                             (Math.abs(
-                              selectionPreviewEnd - pendingSelectionStart
+                              selectionPreviewEnd - pendingSelectionStart,
                             ) /
                               duration) *
                             100
@@ -382,19 +392,21 @@ export default function VideoEditor() {
               </div>
 
               {/* Cuts */}
-              <div className="bg-zinc-800/50 backdrop-blur-sm rounded-xl p-4 border border-zinc-700/50">
+              <div className="bg-gray-100 dark:bg-zinc-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-zinc-700/50">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-white font-semibold text-lg">Cuts</span>
+                  <span className="text-gray-900 dark:text-white font-semibold text-lg">
+                    Cuts
+                  </span>
                   <button
                     onClick={addCutRange}
-                    className="px-4 py-2 bg-gradient-to-r from-[#ffffff] to-[#ffffff] hover:from-[#f5f5f5] hover:to-[#f5f5f5] text-black rounded-lg text-sm font-semibold flex items-center gap-2 shadow-lg shadow-[#ffffff]/20 transition-all duration-200 hover:scale-105"
+                    className="px-4 py-2 bg-gray-900 dark:bg-white hover:bg-gray-700 dark:hover:bg-gray-200 text-white dark:text-black rounded-lg text-sm font-semibold flex items-center gap-2 transition-all duration-200 hover:scale-105"
                   >
                     <Plus className="w-4 h-4" /> Add Cut
                   </button>
                 </div>
 
                 {cutRanges.length === 0 ? (
-                  <p className="text-zinc-500 text-sm text-center py-8">
+                  <p className="text-gray-500 dark:text-zinc-500 text-sm text-center py-8">
                     No cuts yet. Drag on timeline or click Add Cut
                   </p>
                 ) : (
@@ -402,7 +414,7 @@ export default function VideoEditor() {
                     {cutRanges.map((range, i) => (
                       <div
                         key={range.id}
-                        className="bg-zinc-900/60 rounded-lg p-3 flex items-center gap-3 border border-zinc-700/30 hover:border-zinc-600/50 transition-colors"
+                        className="bg-white dark:bg-zinc-900/60 rounded-lg p-3 flex items-center gap-3 border border-gray-200 dark:border-zinc-700/30 hover:border-gray-300 dark:hover:border-zinc-600/50 transition-colors"
                       >
                         <span className="bg-gradient-to-br from-red-500 to-red-600 text-white w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shadow-lg">
                           {i + 1}
@@ -442,7 +454,7 @@ export default function VideoEditor() {
                                 }));
                               }
                             }}
-                            className="bg-zinc-800 border border-zinc-700/50 focus:border-primary focus:ring-2 focus:ring-primary/20 text-white px-3 py-2 rounded-lg text-sm font-mono transition-all outline-none"
+                            className="bg-white dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700/50 focus:border-blue-500 dark:focus:border-white focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-white/20 text-gray-900 dark:text-white px-3 py-2 rounded-lg text-sm font-mono transition-all outline-none"
                             placeholder="00:00:00"
                             inputMode="numeric"
                           />
@@ -484,7 +496,7 @@ export default function VideoEditor() {
                                 }));
                               }
                             }}
-                            className="bg-zinc-800 border border-zinc-700/50 focus:border-primary focus:ring-2 focus:ring-primary/20 text-white px-3 py-2 rounded-lg text-sm font-mono transition-all outline-none"
+                            className="bg-white dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700/50 focus:border-blue-500 dark:focus:border-white focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-white/20 text-gray-900 dark:text-white px-3 py-2 rounded-lg text-sm font-mono transition-all outline-none"
                             placeholder="00:00:00"
                             inputMode="numeric"
                           />
@@ -505,7 +517,7 @@ export default function VideoEditor() {
               <div className="flex gap-3">
                 <label
                   htmlFor="video-upload-new"
-                  className="flex-1 px-5 py-3 bg-zinc-800 hover:bg-zinc-700 border border-[#ffffff]/30 hover:border-[#ffffff] text-white rounded-lg text-center cursor-pointer font-semibold transition-all duration-200 hover:scale-[1.02] shadow-lg"
+                  className="flex-1 px-5 py-3 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 border border-gray-300 dark:border-white/20 hover:border-gray-500 dark:hover:border-white text-gray-900 dark:text-white rounded-lg text-center cursor-pointer font-semibold transition-all duration-200 hover:scale-[1.02]"
                 >
                   New Video
                   <input
@@ -519,7 +531,7 @@ export default function VideoEditor() {
                 <button
                   onClick={handleExport}
                   disabled={isProcessing || !loaded || cutRanges.length === 0}
-                  className="flex-1 px-5 py-3 bg-gradient-to-r from-[#ffffff] to-[#ffffff] hover:from-[#f5f5f5] hover:to-[#f5f5f5] disabled:from-zinc-700 disabled:to-zinc-700 text-black disabled:text-zinc-500 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#ffffff]/30 disabled:shadow-none transition-all duration-200 hover:scale-[1.02] disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="flex-1 px-5 py-3 bg-gray-900 dark:bg-white hover:bg-gray-700 dark:hover:bg-gray-200 disabled:bg-gray-300 dark:disabled:bg-zinc-700 text-white dark:text-black disabled:text-gray-500 dark:disabled:text-zinc-500 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-200 hover:scale-[1.02] disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {isProcessing ? (
                     <>
@@ -536,7 +548,7 @@ export default function VideoEditor() {
               </div>
 
               {!loaded && (
-                <p className="text-amber-400 text-sm text-center font-medium animate-pulse">
+                <p className="text-amber-600 dark:text-amber-400 text-sm text-center font-medium animate-pulse">
                   Loading FFmpeg...
                 </p>
               )}

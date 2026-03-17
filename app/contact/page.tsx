@@ -126,8 +126,8 @@ export default function ContactPage() {
                     Visit Us
                   </h3>
                   <p className="text-gray-600 dark:text-zinc-400">
-                    438, Opera bussiness hub, lajamani chawk, mota varachha,
-                    surat 394101
+                    438, Opera Business Hub Lajamani Chowk, Mota Varachha Surat,
+                    Gujarat 394101 India
                   </p>
                 </div>
               </div>

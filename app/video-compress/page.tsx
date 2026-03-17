@@ -231,19 +231,25 @@ export default function VideoCompressPage() {
                     title: "Smart Compression",
                     description:
                       "Advanced algorithms reduce file size while maintaining the best possible visual quality.",
-                    icon: <Zap className="w-6 h-6 text-white dark:text-black" />,
+                    icon: (
+                      <Zap className="w-6 h-6 text-white dark:text-black" />
+                    ),
                   },
                   {
                     title: "Fast Processing",
                     description:
                       "Compress videos directly in your browser. No upload time for large files.",
-                    icon: <Clock className="w-6 h-6 text-white dark:text-black" />,
+                    icon: (
+                      <Clock className="w-6 h-6 text-white dark:text-black" />
+                    ),
                   },
                   {
                     title: "Secure & Private",
                     description:
                       "Your videos never leave your device. All processing happens locally in your browser.",
-                    icon: <Shield className="w-6 h-6 text-white dark:text-black" />,
+                    icon: (
+                      <Shield className="w-6 h-6 text-white dark:text-black" />
+                    ),
                   },
                 ]}
               />
