@@ -174,7 +174,7 @@ export default function VideoCompressPage() {
           <AdSpace position="left" />
 
           {/* Center Content */}
-          <div id="tool" className="col-span-12 xl:col-span-1">
+          <div className="col-span-12 xl:col-span-1">
             {/* Title and Description */}
             <div className="mb-8">
               <h1
@@ -198,7 +198,9 @@ export default function VideoCompressPage() {
 
             {/* Video Compressor Tool */}
             <ScrollToTool />
-            <VideoCompressor />
+            <div id="tool" className="scroll-mt-16">
+              <VideoCompressor />
+            </div>
 
             {/* How To Guide */}
             <div className="mt-12">

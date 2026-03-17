@@ -172,7 +172,7 @@ export default function VideoConverterPage() {
           <AdSpace position="left" />
 
           {/* Center Content */}
-          <div id="tool" className="col-span-12 xl:col-span-1">
+          <div className="col-span-12 xl:col-span-1">
             {/* Title and Description */}
             <div className="mb-8">
               <h1
@@ -195,7 +195,9 @@ export default function VideoConverterPage() {
 
             {/* Video Converter Tool */}
             <ScrollToTool />
-            <VideoConverter />
+            <div id="tool" className="scroll-mt-16">
+              <VideoConverter />
+            </div>
 
             {/* How To Guide */}
             <div className="mt-12">
