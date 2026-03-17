@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="gifGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#gifGrad)"/>
+  <g transform="translate(400, 185)">
+    <!-- GIF label badge -->
+    <rect x="-70" y="-60" width="140" height="70" rx="10" fill="white" opacity="0.95"/>
+    <text x="0" y="-10" font-family="Arial, sans-serif" font-size="52" font-weight="900" fill="url(#gifGrad)" text-anchor="middle">GIF</text>
+    <!-- Loop arrow beneath badge -->
+    <path d="M -40 40 A 42 42 0 1 1 40 40" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" opacity="0.9"/>
+    <polyline points="32,50 42,40 52,50" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    <!-- Film frames (small) on left -->
+    <rect x="-140" y="-35" width="50" height="40" rx="3" fill="white" opacity="0.3"/>
+    <rect x="-137" y="-32" width="18" height="34" fill="white" opacity="0.5"/>
+    <rect x="-115" y="-32" width="18" height="34" fill="white" opacity="0.5"/>
+    <!-- Arrow pointing right -->
+    <path d="-80,0 -95,0" stroke="white" stroke-width="0"/>
+    <!-- Sparkles -->
+    <circle cx="100" cy="-50" r="6" fill="white" opacity="0.7"/>
+    <circle cx="115" cy="-30" r="4" fill="white" opacity="0.5"/>
+    <circle cx="95" cy="-15" r="3" fill="white" opacity="0.4"/>
+    <circle cx="-110" cy="30" r="5" fill="white" opacity="0.5"/>
+    <circle cx="-125" cy="10" r="3" fill="white" opacity="0.4"/>
+  </g>
+  <text x="400" y="340" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">Video to GIF</text>
+</svg>

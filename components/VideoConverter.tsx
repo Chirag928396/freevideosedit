@@ -132,7 +132,9 @@ export default function VideoConverter() {
             <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-black rounded-lg font-semibold text-sm group-hover:bg-gray-700 dark:group-hover:bg-gray-200 transition-colors">
               <Upload className="w-4 h-4" /> Choose File
             </div>
-            <p className="text-gray-400 dark:text-zinc-600 text-xs mt-4">MP4, WebM, MOV, AVI • Max 500MB</p>
+            <p className="text-gray-400 dark:text-zinc-600 text-xs mt-4">
+              MP4, WebM, MOV, AVI • Max 500MB
+            </p>
           </div>
           <input
             id="video-upload-convert"
