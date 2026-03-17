@@ -5,6 +5,13 @@
 @tailwind utilities;
 
 :root {
+  --primary: #111827;
+  --primary-dark: #111827;
+  --background: #f9fafb;
+  --foreground: #111827;
+}
+
+.dark {
   --primary: #ffffff;
   --primary-dark: #ffffff;
   --background: #09090b;
@@ -15,6 +22,9 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Inter", sans-serif;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 @layer utilities {

@@ -152,7 +152,7 @@ const jsonLd = {
 
 export default function VideoConverterPage() {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-gray-50 dark:bg-zinc-950">
       {/* JSON-LD Schema */}
       <script
         type="application/ld+json"
@@ -175,16 +175,16 @@ export default function VideoConverterPage() {
             {/* Title and Description */}
             <div className="mb-8">
               <h1
-                className="text-4xl md:text-5xl font-bold text-white text-center mb-4"
+                className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white text-center mb-4"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 Convert Video Online
               </h1>
-              <p className="text-zinc-400 text-center text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 dark:text-zinc-400 text-center text-lg max-w-2xl mx-auto">
                 Convert your videos to any format instantly. Support for MP4,
                 AVI, MOV, WEBM, MKV, MP3, and GIF. Free, fast, and secure.
               </p>
-              <p className="text-zinc-500 max-w-2xl mx-auto leading-relaxed text-center mt-3 text-sm">
+              <p className="text-gray-500 dark:text-zinc-500 max-w-2xl mx-auto leading-relaxed text-center mt-3 text-sm">
                 Need to switch from MOV to MP4 for sharing, or extract audio as
                 MP3? Our browser-based converter handles all popular formats
                 without uploading your files to any server. Fast, private, and
@@ -228,19 +228,19 @@ export default function VideoConverterPage() {
                     title: "Multiple Formats",
                     description:
                       "Support for all popular video and audio formats including MP4, AVI, MOV, MP3, and GIF.",
-                    icon: <FileVideo className="w-6 h-6 text-black" />,
+                    icon: <FileVideo className="w-6 h-6 text-white dark:text-black" />,
                   },
                   {
                     title: "Fast Conversion",
                     description:
                       "Convert videos directly in your browser using advanced WASM technology.",
-                    icon: <Zap className="w-6 h-6 text-black" />,
+                    icon: <Zap className="w-6 h-6 text-white dark:text-black" />,
                   },
                   {
                     title: "High Quality",
                     description:
                       "Maintain the highest possible quality during conversion with optimized codecs.",
-                    icon: <RefreshCw className="w-6 h-6 text-black" />,
+                    icon: <RefreshCw className="w-6 h-6 text-white dark:text-black" />,
                   },
                 ]}
               />

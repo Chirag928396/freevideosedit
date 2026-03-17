@@ -30,23 +30,23 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-gray-50 dark:bg-zinc-950">
       <Header />
 
       <main className="max-w-4xl mx-auto px-6 py-16">
         <h1
-          className="text-5xl font-bold text-white mb-6"
+          className="text-5xl font-bold text-gray-900 dark:text-white mb-6"
           style={{ fontFamily: "'Dancing Script', cursive" }}
         >
           Privacy Policy
         </h1>
-        <p className="text-zinc-400 text-lg mb-12">
+        <p className="text-gray-600 dark:text-zinc-400 text-lg mb-12">
           &quot;Last Updated&quot;: January 2, 2026
         </p>
 
-        <div className="space-y-8 text-zinc-300">
+        <div className="space-y-8 text-gray-700 dark:text-zinc-300">
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Your Privacy Matters
             </h2>
             <p className="leading-relaxed">
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Data We Collect
             </h2>
             <p className="leading-relaxed mb-4">
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               How We Use Your Data
             </h2>
             <ul className="list-disc list-inside space-y-2 ml-4">
@@ -94,7 +94,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">Cookies</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Cookies</h2>
             <p className="leading-relaxed">
               We use minimal cookies for analytics and to remember your
               preferences (like theme settings). You can disable cookies in your
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Third-Party Services
             </h2>
             <p className="leading-relaxed">
@@ -115,7 +115,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Children&apos;s Privacy
             </h2>
             <p className="leading-relaxed">
@@ -125,7 +125,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Changes to This Policy
             </h2>
             <p className="leading-relaxed">
@@ -136,7 +136,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">Contact Us</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Contact Us</h2>
             <p className="leading-relaxed">
               If you have any questions about this Privacy Policy, please
               contact us at:{" "}

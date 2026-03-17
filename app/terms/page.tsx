@@ -29,23 +29,23 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-gray-50 dark:bg-zinc-950">
       <Header />
 
       <main className="max-w-4xl mx-auto px-6 py-16">
         <h1
-          className="text-5xl font-bold text-white mb-6"
+          className="text-5xl font-bold text-gray-900 dark:text-white mb-6"
           style={{ fontFamily: "'Dancing Script', cursive" }}
         >
           Terms of Service
         </h1>
-        <p className="text-zinc-400 text-lg mb-12">
+        <p className="text-gray-600 dark:text-zinc-400 text-lg mb-12">
           Last Updated: January 2, 2026
         </p>
 
-        <div className="space-y-8 text-zinc-300">
+        <div className="space-y-8 text-gray-700 dark:text-zinc-300">
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Acceptance of Terms
             </h2>
             <p className="leading-relaxed">
@@ -56,7 +56,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Use of Service
             </h2>
             <p className="leading-relaxed mb-4">
@@ -84,7 +84,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Intellectual Property
             </h2>
             <p className="leading-relaxed">
@@ -96,7 +96,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Service Availability
             </h2>
             <p className="leading-relaxed">
@@ -107,7 +107,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Limitation of Liability
             </h2>
             <p className="leading-relaxed">
@@ -119,7 +119,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               User-Generated Content
             </h2>
             <p className="leading-relaxed">
@@ -131,7 +131,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Browser-Based Processing
             </h2>
             <p className="leading-relaxed">
@@ -143,7 +143,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Changes to Terms
             </h2>
             <p className="leading-relaxed">
@@ -154,7 +154,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Governing Law
             </h2>
             <p className="leading-relaxed">
@@ -164,7 +164,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">Contact</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Contact</h2>
             <p className="leading-relaxed">
               If you have questions about these Terms of Service, contact us at:{" "}
               <a

@@ -154,7 +154,7 @@ const jsonLd = {
 
 export default function VideoCompressPage() {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-gray-50 dark:bg-zinc-950">
       {/* JSON-LD Schema */}
       <script
         type="application/ld+json"
@@ -177,17 +177,17 @@ export default function VideoCompressPage() {
             {/* Title and Description */}
             <div className="mb-8">
               <h1
-                className="text-4xl md:text-5xl font-bold text-white text-center mb-4"
+                className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white text-center mb-4"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 Compress Video Online
               </h1>
-              <p className="text-zinc-400 text-center text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 dark:text-zinc-400 text-center text-lg max-w-2xl mx-auto">
                 Reduce your video file size instantly. Our free online video
                 compressor helps you optimize videos for social media, email,
                 and web without compromising quality.
               </p>
-              <p className="text-zinc-500 max-w-2xl mx-auto leading-relaxed text-center mt-3 text-sm">
+              <p className="text-gray-500 dark:text-zinc-500 max-w-2xl mx-auto leading-relaxed text-center mt-3 text-sm">
                 Choose from multiple compression presets to balance file size
                 and quality. Powered by H.264 and H.265 codecs, our tool can
                 shrink files by up to 90% while keeping them sharp. Ideal for
@@ -231,19 +231,19 @@ export default function VideoCompressPage() {
                     title: "Smart Compression",
                     description:
                       "Advanced algorithms reduce file size while maintaining the best possible visual quality.",
-                    icon: <Zap className="w-6 h-6 text-black" />,
+                    icon: <Zap className="w-6 h-6 text-white dark:text-black" />,
                   },
                   {
                     title: "Fast Processing",
                     description:
                       "Compress videos directly in your browser. No upload time for large files.",
-                    icon: <Clock className="w-6 h-6 text-black" />,
+                    icon: <Clock className="w-6 h-6 text-white dark:text-black" />,
                   },
                   {
                     title: "Secure & Private",
                     description:
                       "Your videos never leave your device. All processing happens locally in your browser.",
-                    icon: <Shield className="w-6 h-6 text-black" />,
+                    icon: <Shield className="w-6 h-6 text-white dark:text-black" />,
                   },
                 ]}
               />

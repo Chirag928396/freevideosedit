@@ -33,7 +33,7 @@ export default function AdSpace({ position }: AdSpaceProps) {
   return (
     <aside className="hidden xl:block">
       <div className="sticky top-20">
-        <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-4 h-[600px] flex items-center justify-center backdrop-blur-sm">
+        <div className="bg-gray-100/50 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800/50 rounded-xl p-4 h-[600px] flex items-center justify-center backdrop-blur-sm">
           {/* 
             ========================================
             EDIT YOUR AD CONTENT BELOW

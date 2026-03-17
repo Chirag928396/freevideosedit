@@ -152,7 +152,7 @@ const jsonLd = {
 
 export default function TrimVideoPage() {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-gray-50 dark:bg-zinc-950">
       {/* JSON-LD Schema */}
       <script
         type="application/ld+json"
@@ -176,17 +176,17 @@ export default function TrimVideoPage() {
             {/* Title and Description */}
             <div className="mb-8">
               <h1
-                className="text-4xl md:text-5xl font-bold text-white text-center mb-4"
+                className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white text-center mb-4"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 Free Online Video Trimmer
               </h1>
-              <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed text-center">
+              <p className="text-lg text-gray-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed text-center">
                 Trim and cut your videos instantly with our powerful online
                 video editor. No downloads, no sign-up required. Professional
                 results in seconds.
               </p>
-              <p className="text-zinc-500 max-w-2xl mx-auto leading-relaxed text-center mt-3 text-sm">
+              <p className="text-gray-500 dark:text-zinc-500 max-w-2xl mx-auto leading-relaxed text-center mt-3 text-sm">
                 Our video trimmer uses FFmpeg WebAssembly to process your files
                 directly in your browser. Select precise start and end points on
                 the built-in timeline, preview your selection, and export the
@@ -233,7 +233,7 @@ export default function TrimVideoPage() {
                 benefits={[
                   {
                     icon: (
-                      <Zap className="w-6 h-6 text-black" strokeWidth={2.5} />
+                      <Zap className="w-6 h-6 text-white dark:text-black" strokeWidth={2.5} />
                     ),
                     title: "Lightning Fast",
                     description:
@@ -242,7 +242,7 @@ export default function TrimVideoPage() {
                   {
                     icon: (
                       <Shield
-                        className="w-6 h-6 text-black"
+                        className="w-6 h-6 text-white dark:text-black"
                         strokeWidth={2.5}
                       />
                     ),
@@ -252,7 +252,7 @@ export default function TrimVideoPage() {
                   },
                   {
                     icon: (
-                      <Globe className="w-6 h-6 text-black" strokeWidth={2.5} />
+                      <Globe className="w-6 h-6 text-white dark:text-black" strokeWidth={2.5} />
                     ),
                     title: "Works Everywhere",
                     description:
@@ -261,7 +261,7 @@ export default function TrimVideoPage() {
                   {
                     icon: (
                       <Download
-                        className="w-6 h-6 text-black"
+                        className="w-6 h-6 text-white dark:text-black"
                         strokeWidth={2.5}
                       />
                     ),
@@ -271,7 +271,7 @@ export default function TrimVideoPage() {
                   },
                   {
                     icon: (
-                      <Clock className="w-6 h-6 text-black" strokeWidth={2.5} />
+                      <Clock className="w-6 h-6 text-white dark:text-black" strokeWidth={2.5} />
                     ),
                     title: "Frame Precision",
                     description:
@@ -280,7 +280,7 @@ export default function TrimVideoPage() {
                   {
                     icon: (
                       <CheckCircle
-                        className="w-6 h-6 text-black"
+                        className="w-6 h-6 text-white dark:text-black"
                         strokeWidth={2.5}
                       />
                     ),

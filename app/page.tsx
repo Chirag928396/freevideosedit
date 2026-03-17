@@ -117,7 +117,7 @@ const jsonLd = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-gray-50 dark:bg-zinc-950">
       {/* JSON-LD Schema */}
       <script
         type="application/ld+json"
@@ -131,16 +131,16 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
           <h1
-            className="text-5xl font-bold text-white mb-6"
+            className="text-5xl font-bold text-gray-900 dark:text-white mb-6"
             style={{ fontFamily: "'Dancing Script', cursive" }}
           >
             Edit Your Videos Online
           </h1>
-          <p className="text-xl text-zinc-400 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-zinc-400 mb-8 max-w-2xl mx-auto">
             Professional video editing tools in your browser. No downloads, no
             installation required.
           </p>
-          <p className="text-zinc-500 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-500 dark:text-zinc-500 max-w-3xl mx-auto leading-relaxed">
             FreeVideosEdit is a completely free, browser-based video editing
             platform. Trim unwanted portions, compress large files for easy
             sharing, convert between formats like MP4, MOV, and WebM, or add
@@ -153,12 +153,14 @@ export default function Home() {
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
           <Link href="/trim-video" className="group">
-            <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-8 hover:border-[#ffffff]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#ffffff]/10 h-full">
+            <div className="bg-white dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800/50 rounded-xl p-8 hover:border-gray-400 dark:hover:border-white/50 transition-all duration-300 hover:shadow-lg h-full">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Scissors className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Trim Video</h3>
-              <p className="text-zinc-400 text-sm">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                Trim Video
+              </h3>
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
                 Cut and remove unwanted portions from your videos with precision
                 timeline controls.
               </p>
@@ -166,14 +168,14 @@ export default function Home() {
           </Link>
 
           <Link href="/video-watermark" className="group">
-            <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-8 hover:border-[#ffffff]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#ffffff]/10 h-full">
+            <div className="bg-white dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800/50 rounded-xl p-8 hover:border-gray-400 dark:hover:border-white/50 transition-all duration-300 hover:shadow-lg h-full">
               <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Droplet className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Add Watermark
               </h3>
-              <p className="text-zinc-400 text-sm">
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
                 Protect your content by adding custom text or image watermarks
                 to your videos.
               </p>
@@ -181,14 +183,14 @@ export default function Home() {
           </Link>
 
           <Link href="/video-compress" className="group">
-            <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-8 hover:border-[#ffffff]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#ffffff]/10 h-full">
+            <div className="bg-white dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800/50 rounded-xl p-8 hover:border-gray-400 dark:hover:border-white/50 transition-all duration-300 hover:shadow-lg h-full">
               <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Minimize2 className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Compress Video
               </h3>
-              <p className="text-zinc-400 text-sm">
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
                 Reduce video file size without losing quality. Perfect for
                 sharing and uploading.
               </p>
@@ -196,14 +198,14 @@ export default function Home() {
           </Link>
 
           <Link href="/video-converter" className="group">
-            <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-8 hover:border-[#ffffff]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#ffffff]/10 h-full">
+            <div className="bg-white dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800/50 rounded-xl p-8 hover:border-gray-400 dark:hover:border-white/50 transition-all duration-300 hover:shadow-lg h-full">
               <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <FileVideo className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Convert Format
               </h3>
-              <p className="text-zinc-400 text-sm">
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
                 Convert your videos to MP4, MOV, WebM, MP3, and more formats
                 instantly.
               </p>
@@ -214,46 +216,46 @@ export default function Home() {
         {/* Why Choose Section */}
         <section className="mt-24 mb-12">
           <h2
-            className="text-3xl font-bold text-white mb-10 text-center"
+            className="text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center"
             style={{ fontFamily: "'Dancing Script', cursive" }}
           >
             Why Choose FreeVideosEdit
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="text-center">
-              <div className="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Play className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 bg-gray-200 dark:bg-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Play className="w-6 h-6 text-gray-900 dark:text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                 100% Browser-Based
               </h3>
-              <p className="text-zinc-400 text-sm">
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
                 Every tool runs entirely in your browser using WebAssembly
                 technology. There is nothing to install, no account to create,
                 and no file size limits imposed by a server.
               </p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Video className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 bg-gray-200 dark:bg-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Video className="w-6 h-6 text-gray-900 dark:text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                 Private &amp; Secure
               </h3>
-              <p className="text-zinc-400 text-sm">
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
                 Your videos are processed locally on your device. We never
                 upload, store, or access your files. Your content remains yours
                 at all times.
               </p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Scissors className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 bg-gray-200 dark:bg-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Scissors className="w-6 h-6 text-gray-900 dark:text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                 Professional Results
               </h3>
-              <p className="text-zinc-400 text-sm">
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
                 Powered by FFmpeg, the same engine used by professional video
                 editors. Get studio-quality output from trimming, compression,
                 conversion, and watermarking tools.
