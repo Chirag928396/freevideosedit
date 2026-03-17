@@ -173,7 +173,7 @@ export default function AddWatermarkPage() {
           <AdSpace position="left" />
 
           {/* Center Content */}
-          <div className="col-span-12 xl:col-span-1">
+          <div id="tool" className="col-span-12 xl:col-span-1">
             {/* Title and Description */}
             <div className="mb-8">
               <h1
@@ -197,9 +197,7 @@ export default function AddWatermarkPage() {
 
             {/* Video Watermark Tool */}
             <ScrollToTool />
-            <div id="tool">
-              <VideoWatermark />
-            </div>
+            <VideoWatermark />
 
             {/* How to Guide */}
             <div className="mt-12">

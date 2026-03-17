@@ -173,7 +173,7 @@ export default function TrimVideoPage() {
           <AdSpace position="left" />
 
           {/* Center Content */}
-          <div className="col-span-12 xl:col-span-1">
+          <div id="tool" className="col-span-12 xl:col-span-1">
             {/* Title and Description */}
             <div className="mb-8">
               <h1
@@ -197,9 +197,7 @@ export default function TrimVideoPage() {
 
             {/* Video Editor */}
             <ScrollToTool />
-            <div id="tool">
-              <VideoEditor />
-            </div>
+            <VideoEditor />
 
             {/* How to Guide */}
             <div className="mt-12">
