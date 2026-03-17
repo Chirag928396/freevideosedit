@@ -1,4 +1,5 @@
 import VideoConverter from "@/components/VideoConverter";
+import ScrollToTool from "@/components/ScrollToTool";
 import Header from "@/components/Header";
 import {
   Video,
@@ -193,7 +194,10 @@ export default function VideoConverterPage() {
             </div>
 
             {/* Video Converter Tool */}
-            <VideoConverter />
+            <ScrollToTool />
+            <div id="tool">
+              <VideoConverter />
+            </div>
 
             {/* How To Guide */}
             <div className="mt-12">

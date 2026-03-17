@@ -1,4 +1,5 @@
 import VideoEditor from "@/components/VideoEditor";
+import ScrollToTool from "@/components/ScrollToTool";
 import {
   Video,
   Scissors,
@@ -195,7 +196,10 @@ export default function TrimVideoPage() {
             </div>
 
             {/* Video Editor */}
-            <VideoEditor />
+            <ScrollToTool />
+            <div id="tool">
+              <VideoEditor />
+            </div>
 
             {/* How to Guide */}
             <div className="mt-12">

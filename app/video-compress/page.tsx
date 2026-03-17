@@ -1,4 +1,5 @@
 import VideoCompressor from "@/components/VideoCompressor";
+import ScrollToTool from "@/components/ScrollToTool";
 import Header from "@/components/Header";
 import {
   Video,
@@ -196,7 +197,10 @@ export default function VideoCompressPage() {
             </div>
 
             {/* Video Compressor Tool */}
-            <VideoCompressor />
+            <ScrollToTool />
+            <div id="tool">
+              <VideoCompressor />
+            </div>
 
             {/* How To Guide */}
             <div className="mt-12">

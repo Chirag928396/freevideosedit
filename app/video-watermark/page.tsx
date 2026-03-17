@@ -1,4 +1,5 @@
 import VideoWatermark from "@/components/VideoWatermark";
+import ScrollToTool from "@/components/ScrollToTool";
 import {
   Video,
   Droplet,
@@ -195,7 +196,10 @@ export default function AddWatermarkPage() {
             </div>
 
             {/* Video Watermark Tool */}
-            <VideoWatermark />
+            <ScrollToTool />
+            <div id="tool">
+              <VideoWatermark />
+            </div>
 
             {/* How to Guide */}
             <div className="mt-12">
