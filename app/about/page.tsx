@@ -112,6 +112,71 @@ export default function AboutPage() {
               </p>
             </div>
           </section>
+
+          {/* What We Offer */}
+          <section className="bg-zinc-900/30 backdrop-blur-sm rounded-2xl border border-zinc-800/50 p-8 md:p-12">
+            <h2 className="text-2xl font-bold text-white mb-6">
+              What We Offer
+            </h2>
+            <div className="space-y-4 text-zinc-400 leading-relaxed">
+              <p>
+                FreeVideosEdit provides a growing collection of browser-based
+                video editing tools, each designed for a specific task:
+              </p>
+              <ul className="list-disc list-inside space-y-2 ml-2">
+                <li>
+                  <strong className="text-zinc-300">Video Trimmer</strong> — Cut
+                  and remove unwanted sections with frame-level precision.
+                </li>
+                <li>
+                  <strong className="text-zinc-300">Video Compressor</strong> —
+                  Reduce file sizes by up to 90% while preserving visual
+                  quality.
+                </li>
+                <li>
+                  <strong className="text-zinc-300">Video Converter</strong> —
+                  Switch between MP4, MOV, WebM, AVI, MP3, GIF, and more.
+                </li>
+                <li>
+                  <strong className="text-zinc-300">Video Watermark</strong> —
+                  Protect your content with text or logo watermarks.
+                </li>
+              </ul>
+              <p>
+                All tools are powered by FFmpeg compiled to WebAssembly, which
+                means the processing happens on your device rather than on a
+                remote server. There is no signup, no usage limit, and no cost.
+              </p>
+            </div>
+          </section>
+
+          {/* Our Values */}
+          <section className="bg-zinc-900/30 backdrop-blur-sm rounded-2xl border border-zinc-800/50 p-8 md:p-12">
+            <h2 className="text-2xl font-bold text-white mb-6">Our Values</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div>
+                <h3 className="text-white font-semibold mb-2">Privacy First</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  Your files never leave your computer. We do not collect,
+                  store, or transmit any video content.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-white font-semibold mb-2">Always Free</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  Every tool on FreeVideosEdit is free to use with no hidden
+                  charges, watermarks on output, or premium tiers.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-white font-semibold mb-2">Simplicity</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  We focus on doing a few things well. Each tool is built for
+                  one purpose so you can get results in seconds.
+                </p>
+              </div>
+            </div>
+          </section>
         </div>
       </main>
 

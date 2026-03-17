@@ -172,11 +172,8 @@ export default function VideoConverterPage() {
 
           {/* Center Content */}
           <div className="col-span-12 xl:col-span-1">
-            {/* Video Converter Tool */}
-            <VideoConverter />
-
             {/* Title and Description */}
-            <div className="mt-8">
+            <div className="mb-8">
               <h1
                 className="text-4xl md:text-5xl font-bold text-white text-center mb-4"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
@@ -187,7 +184,16 @@ export default function VideoConverterPage() {
                 Convert your videos to any format instantly. Support for MP4,
                 AVI, MOV, WEBM, MKV, MP3, and GIF. Free, fast, and secure.
               </p>
+              <p className="text-zinc-500 max-w-2xl mx-auto leading-relaxed text-center mt-3 text-sm">
+                Need to switch from MOV to MP4 for sharing, or extract audio as
+                MP3? Our browser-based converter handles all popular formats
+                without uploading your files to any server. Fast, private, and
+                completely free to use.
+              </p>
             </div>
+
+            {/* Video Converter Tool */}
+            <VideoConverter />
 
             {/* How To Guide */}
             <div className="mt-12">

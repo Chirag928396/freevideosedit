@@ -167,4 +167,154 @@ export const blogPosts: BlogPost[] = [
     toolLink: "/video-converter",
     toolName: "Video Converter Tool",
   },
+  {
+    id: 5,
+    slug: "best-video-settings-for-social-media",
+    title: "Best Video Settings for Social Media in 2024",
+    excerpt:
+      "Every platform has different requirements for video resolution, aspect ratio, and file size. Here are the ideal export settings for YouTube, Instagram, TikTok, and more.",
+    content: `
+      <p>Uploading a video to social media and having it look blurry or cropped is frustrating. Each platform processes uploads differently, and using the wrong settings can ruin an otherwise great video.</p>
+
+      <h2>YouTube</h2>
+      <p>YouTube supports resolutions up to 8K, but for most creators 1080p (1920x1080) at 30 or 60 fps is the sweet spot. Use the MP4 container with H.264 video and AAC audio. A bitrate between 8 and 12 Mbps delivers sharp results without enormous file sizes.</p>
+
+      <h2>Instagram Reels &amp; Stories</h2>
+      <p>Instagram favors vertical video at 1080x1920 (9:16 aspect ratio). Keep clips under 90 seconds for Reels. MP4 with H.264 at around 3.5 Mbps works well. Higher bitrates get re-compressed by Instagram anyway, so there is little benefit in uploading huge files.</p>
+
+      <h2>TikTok</h2>
+      <p>TikTok also uses 9:16 vertical video. The recommended resolution is 1080x1920, and videos can be up to 10 minutes long. Keep file size under 287 MB for the best upload experience. MP4 or MOV formats are accepted.</p>
+
+      <h2>Twitter / X</h2>
+      <p>Twitter accepts MP4 and MOV with a maximum file size of 512 MB. Stick with 1280x720 or 1920x1080 at 30 fps. Videos can be up to 2 minutes and 20 seconds on most accounts.</p>
+
+      <h2>Quick Reference Table</h2>
+      <ul>
+        <li><strong>YouTube:</strong> 1920x1080, MP4 H.264, 8-12 Mbps</li>
+        <li><strong>Instagram:</strong> 1080x1920 (9:16), MP4 H.264, 3.5 Mbps</li>
+        <li><strong>TikTok:</strong> 1080x1920 (9:16), MP4/MOV, under 287 MB</li>
+        <li><strong>Twitter:</strong> 1920x1080, MP4, under 512 MB</li>
+      </ul>
+
+      <p>If your video does not match these specs, use our free video converter or compressor to adjust the format and file size before uploading.</p>
+    `,
+    date: "Feb 20, 2024",
+    author: "freevidosedit Team",
+    category: "Guide",
+    imageUrl: "/blog-social.svg",
+    toolLink: "/video-converter",
+    toolName: "Video Converter Tool",
+  },
+  {
+    id: 6,
+    slug: "how-to-reduce-video-size-for-email",
+    title: "How to Reduce Video Size for Email Attachments",
+    excerpt:
+      "Most email providers cap attachments at 25 MB. Learn practical ways to shrink your video files so they send without issues.",
+    content: `
+      <p>Email remains one of the most common ways to share files, but nearly every provider limits attachment size to 25 MB. A single minute of 1080p video can easily exceed 100 MB, making email delivery impossible without compression.</p>
+
+      <h2>Why Are Video Files So Large?</h2>
+      <p>Video files contain thousands of individual frames along with audio data. At 30 frames per second, a one-minute clip has 1,800 frames. Without compression, each frame would be several megabytes, resulting in gigabyte-sized files.</p>
+
+      <h2>Step-by-Step: Shrink a Video for Email</h2>
+      <ol>
+        <li><strong>Trim first:</strong> Remove any unnecessary footage before compressing. Shorter videos mean smaller files.</li>
+        <li><strong>Lower the resolution:</strong> If the recipient will watch on a phone, 720p is more than enough.</li>
+        <li><strong>Compress:</strong> Use our online compressor and select the "Small Size" preset to target the lowest file size while keeping the video watchable.</li>
+        <li><strong>Check the result:</strong> Make sure the output is under 25 MB and the quality is acceptable.</li>
+      </ol>
+
+      <h2>Alternative: Cloud Links</h2>
+      <p>If the video is still too large after compression, consider uploading it to Google Drive, Dropbox, or OneDrive and sharing a link instead. This avoids attachment limits entirely.</p>
+
+      <h2>Recommended Settings</h2>
+      <ul>
+        <li><strong>Resolution:</strong> 720p (1280x720)</li>
+        <li><strong>Bitrate:</strong> 1-2 Mbps</li>
+        <li><strong>Format:</strong> MP4 with H.264</li>
+        <li><strong>Target size:</strong> Under 20 MB to leave room for the email body</li>
+      </ul>
+    `,
+    date: "Mar 05, 2024",
+    author: "freevidosedit Team",
+    category: "Tutorial",
+    imageUrl: "/blog-email.svg",
+    toolLink: "/video-compress",
+    toolName: "Free Video Compressor",
+  },
+  {
+    id: 7,
+    slug: "browser-video-editing-vs-desktop-software",
+    title: "Browser Video Editing vs Desktop Software: Which Is Better?",
+    excerpt:
+      "Desktop editors like Premiere Pro are powerful, but browser-based tools have caught up for everyday tasks. Here is an honest comparison.",
+    content: `
+      <p>Professional video editing has traditionally required expensive desktop software and high-end hardware. But modern browser technologies like WebAssembly have changed the landscape, making it possible to perform many common editing tasks without installing anything.</p>
+
+      <h2>When Desktop Software Wins</h2>
+      <ul>
+        <li><strong>Multi-track editing:</strong> If you need to layer multiple video and audio tracks with effects, transitions, and keyframes, desktop software is still the best choice.</li>
+        <li><strong>Color grading:</strong> Advanced color correction with scopes and LUTs requires dedicated tools like DaVinci Resolve.</li>
+        <li><strong>Long projects:</strong> Feature-length films or hour-long videos benefit from the timeline management and rendering power of desktop apps.</li>
+      </ul>
+
+      <h2>When Browser Tools Win</h2>
+      <ul>
+        <li><strong>Quick edits:</strong> Trimming a clip, compressing a file, or converting a format takes seconds in a browser—no software to install or update.</li>
+        <li><strong>Accessibility:</strong> Works on any computer with a web browser, including Chromebooks and older machines.</li>
+        <li><strong>Privacy:</strong> Tools like FreeVideosEdit process everything locally. Your files never leave your device.</li>
+        <li><strong>Cost:</strong> Completely free, unlike subscriptions for Premiere Pro or Final Cut Pro.</li>
+      </ul>
+
+      <h2>The Verdict</h2>
+      <p>For everyday tasks like cutting a clip for social media, compressing a video for email, or adding a watermark to protect your content, browser-based tools are faster and more convenient. Save the desktop software for complex, multi-layer projects.</p>
+    `,
+    date: "Mar 12, 2024",
+    author: "freevidosedit Team",
+    category: "Comparison",
+    imageUrl: "/blog-compare.svg",
+    toolLink: "/trim-video",
+    toolName: "Online Video Trimmer",
+  },
+  {
+    id: 8,
+    slug: "how-to-create-gif-from-video",
+    title: "How to Create a GIF from Any Video in Seconds",
+    excerpt:
+      "GIFs are everywhere—social media, messaging apps, presentations. Learn how to turn any video clip into a perfectly looped GIF.",
+    content: `
+      <p>GIFs are the universal language of the internet. They are lightweight, auto-playing, and supported virtually everywhere from Slack to Twitter to email signatures. Creating one from a video clip is simpler than you might think.</p>
+
+      <h2>What Makes a Good GIF?</h2>
+      <ul>
+        <li><strong>Short duration:</strong> Keep it between 2 and 6 seconds. Longer GIFs become very large in file size.</li>
+        <li><strong>Clear subject:</strong> GIFs work best when focused on a single action or reaction.</li>
+        <li><strong>Small dimensions:</strong> 480px wide is enough for most uses. Larger dimensions balloon the file size.</li>
+      </ul>
+
+      <h2>Step-by-Step: Video to GIF</h2>
+      <ol>
+        <li><strong>Trim your video:</strong> Use our video trimmer to isolate the exact 2-6 second clip you want.</li>
+        <li><strong>Convert to GIF:</strong> Open the video converter, upload your trimmed clip, and select GIF as the output format.</li>
+        <li><strong>Download:</strong> Your GIF is created locally in your browser and ready to share instantly.</li>
+      </ol>
+
+      <h2>Tips for Smaller GIF File Sizes</h2>
+      <ul>
+        <li>Reduce the frame rate to 10-15 fps instead of the default 30 fps.</li>
+        <li>Crop or resize the video to a smaller resolution before converting.</li>
+        <li>Keep the duration as short as possible—every extra second adds significant file size.</li>
+      </ul>
+
+      <h2>Where to Use Your GIFs</h2>
+      <p>Share them in Slack or Teams for fun reactions, embed them in blog posts or emails, post them on Twitter or Reddit, or use them in presentations to add a dynamic touch without embedding a full video player.</p>
+    `,
+    date: "Mar 15, 2024",
+    author: "freevidosedit Team",
+    category: "Tutorial",
+    imageUrl: "/blog-gif.svg",
+    toolLink: "/video-converter",
+    toolName: "Video Converter Tool",
+  },
 ];

@@ -173,11 +173,8 @@ export default function TrimVideoPage() {
 
           {/* Center Content */}
           <div className="col-span-12 xl:col-span-1">
-            {/* Video Editor */}
-            <VideoEditor />
-
             {/* Title and Description */}
-            <div className="mt-8">
+            <div className="mb-8">
               <h1
                 className="text-4xl md:text-5xl font-bold text-white text-center mb-4"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
@@ -189,7 +186,16 @@ export default function TrimVideoPage() {
                 video editor. No downloads, no sign-up required. Professional
                 results in seconds.
               </p>
+              <p className="text-zinc-500 max-w-2xl mx-auto leading-relaxed text-center mt-3 text-sm">
+                Our video trimmer uses FFmpeg WebAssembly to process your files
+                directly in your browser. Select precise start and end points on
+                the built-in timeline, preview your selection, and export the
+                trimmed clip. Supports MP4, MOV, AVI, WebM, and more.
+              </p>
             </div>
+
+            {/* Video Editor */}
+            <VideoEditor />
 
             {/* How to Guide */}
             <div className="mt-12">

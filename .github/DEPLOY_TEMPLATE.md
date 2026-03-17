@@ -11,7 +11,7 @@ name: Deploy to Hostinger
 on:
   push:
     branches:
-      - main        # <-- CHANGE THIS if your branch is different (e.g. master)
+      - main # <-- CHANGE THIS if your branch is different (e.g. master)
 
 jobs:
   deploy:
@@ -41,12 +41,12 @@ jobs:
 1. Go to your GitHub repo → **Settings** → **Secrets and variables** → **Actions**
 2. Click **New repository secret** and add these 4 secrets:
 
-   | Secret Name    | Value                  |
-   |----------------|------------------------|
-   | `SSH_HOST`     | `31.97.63.87`          |
-   | `SSH_USER`     | `root`                 |
-   | `SSH_PASSWORD` | *(your SSH password)*  |
-   | `SSH_PORT`     | `22`                   |
+   | Secret Name    | Value                 |
+   | -------------- | --------------------- |
+   | `SSH_HOST`     | `31.97.63.87`         |
+   | `SSH_USER`     | `root`                |
+   | `SSH_PASSWORD` | _(your SSH password)_ |
+   | `SSH_PORT`     | `22`                  |
 
 3. Commit and push the `deploy.yml` file to your repo.
 4. Every `git push` to `main` will now **automatically deploy** to Hostinger.
@@ -55,8 +55,8 @@ jobs:
 
 ## Your Current Sites
 
-| PM2 App Name              | Folder                         | Repo                              |
-|---------------------------|--------------------------------|-----------------------------------|
-| `freevideosedit-frontend` | `/var/www/freevideosedit-frontend` | `Chirag928396/freevideosedit`  |
+| PM2 App Name              | Folder                             | Repo                          |
+| ------------------------- | ---------------------------------- | ----------------------------- |
+| `freevideosedit-frontend` | `/var/www/freevideosedit-frontend` | `Chirag928396/freevideosedit` |
 | `convertall-backend`      | `/var/www/backend_convertall`      | `Digpalk/backend_convertall`  |
 | `frontend`                | `/var/www/frontend_convertAll`     | `Digpalk/frontend_convertAll` |

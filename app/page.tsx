@@ -130,15 +130,23 @@ export default function Home() {
       {/* Hero Section */}
       <main className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
-          <h2
+          <h1
             className="text-5xl font-bold text-white mb-6"
             style={{ fontFamily: "'Dancing Script', cursive" }}
           >
             Edit Your Videos Online
-          </h2>
+          </h1>
           <p className="text-xl text-zinc-400 mb-8 max-w-2xl mx-auto">
             Professional video editing tools in your browser. No downloads, no
             installation required.
+          </p>
+          <p className="text-zinc-500 max-w-3xl mx-auto leading-relaxed">
+            FreeVideosEdit is a completely free, browser-based video editing
+            platform. Trim unwanted portions, compress large files for easy
+            sharing, convert between formats like MP4, MOV, and WebM, or add
+            watermarks to protect your content. All processing happens locally
+            on your device, so your videos stay private and never get uploaded
+            to any server.
           </p>
         </div>
 
@@ -202,6 +210,57 @@ export default function Home() {
             </div>
           </Link>
         </div>
+
+        {/* Why Choose Section */}
+        <section className="mt-24 mb-12">
+          <h2
+            className="text-3xl font-bold text-white mb-10 text-center"
+            style={{ fontFamily: "'Dancing Script', cursive" }}
+          >
+            Why Choose FreeVideosEdit
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Play className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">
+                100% Browser-Based
+              </h3>
+              <p className="text-zinc-400 text-sm">
+                Every tool runs entirely in your browser using WebAssembly
+                technology. There is nothing to install, no account to create,
+                and no file size limits imposed by a server.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Video className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">
+                Private &amp; Secure
+              </h3>
+              <p className="text-zinc-400 text-sm">
+                Your videos are processed locally on your device. We never
+                upload, store, or access your files. Your content remains yours
+                at all times.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Scissors className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">
+                Professional Results
+              </h3>
+              <p className="text-zinc-400 text-sm">
+                Powered by FFmpeg, the same engine used by professional video
+                editors. Get studio-quality output from trimming, compression,
+                conversion, and watermarking tools.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />

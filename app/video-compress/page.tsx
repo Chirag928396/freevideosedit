@@ -174,11 +174,8 @@ export default function VideoCompressPage() {
 
           {/* Center Content */}
           <div className="col-span-12 xl:col-span-1">
-            {/* Video Compressor Tool */}
-            <VideoCompressor />
-
             {/* Title and Description */}
-            <div className="mt-8">
+            <div className="mb-8">
               <h1
                 className="text-4xl md:text-5xl font-bold text-white text-center mb-4"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
@@ -190,7 +187,16 @@ export default function VideoCompressPage() {
                 compressor helps you optimize videos for social media, email,
                 and web without compromising quality.
               </p>
+              <p className="text-zinc-500 max-w-2xl mx-auto leading-relaxed text-center mt-3 text-sm">
+                Choose from multiple compression presets to balance file size
+                and quality. Powered by H.264 and H.265 codecs, our tool can
+                shrink files by up to 90% while keeping them sharp. Ideal for
+                WhatsApp, Discord, email attachments, and social media uploads.
+              </p>
             </div>
+
+            {/* Video Compressor Tool */}
+            <VideoCompressor />
 
             {/* How To Guide */}
             <div className="mt-12">

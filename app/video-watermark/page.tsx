@@ -173,11 +173,8 @@ export default function AddWatermarkPage() {
 
           {/* Center Content */}
           <div className="col-span-12 xl:col-span-1">
-            {/* Video Watermark Tool */}
-            <VideoWatermark />
-
             {/* Title and Description */}
-            <div className="mt-8">
+            <div className="mb-8">
               <h1
                 className="text-4xl md:text-5xl font-bold text-white text-center mb-4"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
@@ -189,7 +186,16 @@ export default function AddWatermarkPage() {
                 or image watermarks with full control over position, size, and
                 opacity. Professional results in seconds.
               </p>
+              <p className="text-zinc-500 max-w-2xl mx-auto leading-relaxed text-center mt-3 text-sm">
+                Whether you are a content creator, business, or freelancer,
+                watermarking helps prevent unauthorized use of your work. Upload
+                your logo or type custom text, adjust placement and
+                transparency, and export a branded video ready to publish.
+              </p>
             </div>
+
+            {/* Video Watermark Tool */}
+            <VideoWatermark />
 
             {/* How to Guide */}
             <div className="mt-12">
