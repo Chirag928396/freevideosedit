@@ -237,7 +237,10 @@ export default function TrimVideoPage() {
                 benefits={[
                   {
                     icon: (
-                      <Zap className="w-6 h-6 text-white dark:text-black" strokeWidth={2.5} />
+                      <Zap
+                        className="w-6 h-6 text-white dark:text-black"
+                        strokeWidth={2.5}
+                      />
                     ),
                     title: "Lightning Fast",
                     description:
@@ -256,7 +259,10 @@ export default function TrimVideoPage() {
                   },
                   {
                     icon: (
-                      <Globe className="w-6 h-6 text-white dark:text-black" strokeWidth={2.5} />
+                      <Globe
+                        className="w-6 h-6 text-white dark:text-black"
+                        strokeWidth={2.5}
+                      />
                     ),
                     title: "Works Everywhere",
                     description:
@@ -275,7 +281,10 @@ export default function TrimVideoPage() {
                   },
                   {
                     icon: (
-                      <Clock className="w-6 h-6 text-white dark:text-black" strokeWidth={2.5} />
+                      <Clock
+                        className="w-6 h-6 text-white dark:text-black"
+                        strokeWidth={2.5}
+                      />
                     ),
                     title: "Frame Precision",
                     description:
