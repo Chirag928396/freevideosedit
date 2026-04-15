@@ -5,6 +5,7 @@ import {
   FileVideo,
   Minimize2,
   Play,
+  Layers,
 } from "lucide-react";
 import Link from "next/link";
 import Footer from "@/components/Footer";
@@ -29,6 +30,8 @@ export const metadata: Metadata = {
     "edit video in browser",
     "no download video editor",
     "browser based video editor",
+    "combine videos online",
+    "merge videos free",
   ],
   alternates: {
     canonical: siteUrl,
@@ -152,6 +155,27 @@ export default function Home() {
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
+          {/* Combine Videos — featured card spanning full row on md */}
+          <Link href="/video-combine" className="group md:col-span-2 lg:col-span-1">
+            <div className="relative bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-900/20 dark:to-indigo-900/20 border border-violet-200 dark:border-violet-700/40 rounded-xl p-8 hover:border-violet-400 dark:hover:border-violet-500/70 transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/10 h-full overflow-hidden">
+              {/* NEW badge */}
+              <span className="absolute top-4 right-4 bg-gradient-to-r from-violet-500 to-indigo-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-lg">
+                NEW
+              </span>
+              <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg shadow-violet-500/30">
+                <Layers className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                Combine Videos
+              </h3>
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
+                Merge multiple video clips into one seamless video. Drag to
+                reorder, preview each clip, and export as MP4 — all in your
+                browser.
+              </p>
+            </div>
+          </Link>
+
           <Link href="/trim-video" className="group">
             <div className="bg-white dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800/50 rounded-xl p-8 hover:border-gray-400 dark:hover:border-white/50 transition-all duration-300 hover:shadow-lg h-full">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -212,6 +236,7 @@ export default function Home() {
             </div>
           </Link>
         </div>
+
 
         {/* Why Choose Section */}
         <section className="mt-24 mb-12">

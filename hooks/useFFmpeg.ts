@@ -643,6 +643,91 @@ export function useFFmpeg() {
     }
   };
 
+  const combineVideos = async (videoFiles: File[]): Promise<Blob> => {
+    if (!ffmpegRef.current || !loaded) {
+      throw new Error("FFmpeg is not loaded");
+    }
+    if (videoFiles.length < 2) {
+      throw new Error("Please provide at least 2 videos to combine");
+    }
+
+    setIsProcessing(true);
+    setProgress(0);
+
+    try {
+      const ffmpeg = ffmpegRef.current;
+      const segmentFiles: string[] = [];
+
+      // Write and re-encode each video to a uniform format
+      for (let i = 0; i < videoFiles.length; i++) {
+        const inputName = `combine_input_${i}.mp4`;
+        const segmentName = `combine_seg_${i}.mp4`;
+        await ffmpeg.writeFile(inputName, await fetchFile(videoFiles[i]));
+
+        await ffmpeg.exec([
+          "-i",
+          inputName,
+          "-c:v",
+          "libx264",
+          "-preset",
+          "ultrafast",
+          "-c:a",
+          "aac",
+          "-ar",
+          "44100",
+          "-avoid_negative_ts",
+          "make_zero",
+          segmentName,
+        ]);
+
+        await ffmpeg.deleteFile(inputName);
+        segmentFiles.push(segmentName);
+
+        // Update progress proportionally
+        setProgress(Math.round(((i + 1) / (videoFiles.length + 1)) * 80));
+      }
+
+      // Build concat list
+      const concatContent = segmentFiles.map((f) => `file '${f}'`).join("\n");
+      await ffmpeg.writeFile("combine_concat.txt", concatContent);
+
+      // Concatenate all segments
+      await ffmpeg.exec([
+        "-f",
+        "concat",
+        "-safe",
+        "0",
+        "-i",
+        "combine_concat.txt",
+        "-c",
+        "copy",
+        "combine_output.mp4",
+      ]);
+
+      const data = (await ffmpeg.readFile("combine_output.mp4")) as Uint8Array;
+
+      // Cleanup
+      await ffmpeg.deleteFile("combine_concat.txt");
+      await ffmpeg.deleteFile("combine_output.mp4");
+      for (const seg of segmentFiles) {
+        try { await ffmpeg.deleteFile(seg); } catch {}
+      }
+
+      setProgress(100);
+      setTimeout(() => {
+        setIsProcessing(false);
+        setProgress(0);
+      }, 500);
+
+      return new Blob([new Uint8Array(data)], { type: "video/mp4" });
+    } catch (error) {
+      console.error("Combine error:", error);
+      setIsProcessing(false);
+      setProgress(0);
+      throw error;
+    }
+  };
+
   return {
     loaded,
     isProcessing,
@@ -652,5 +737,6 @@ export function useFFmpeg() {
     addWatermark,
     compressVideo,
     convertVideo,
+    combineVideos,
   };
 }
