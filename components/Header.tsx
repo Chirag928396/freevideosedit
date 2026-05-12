@@ -7,7 +7,6 @@ import {
   Droplet,
   FileText,
   FileVideo,
-  Home,
   Image as ImageIcon,
   Info,
   Layers,
@@ -28,17 +27,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const navItems = [
-  {
-    href: "/",
-    label: "Home",
-    icon: Home,
-    gradient: "from-gray-900 to-gray-700",
-    hoverBg: "hover:bg-gray-50 dark:hover:bg-zinc-800",
-    activeText: "text-gray-900 dark:text-white",
-    activeBg: "bg-gray-100 dark:bg-zinc-800",
-    activeBorder: "border-gray-200 dark:border-zinc-700",
-    badge: null,
-  },
   {
     href: "/video-combine",
     label: "Combine",
@@ -106,6 +94,20 @@ const navItems = [
     badge: null,
   },
   {
+    href: "/features",
+    label: "Features",
+    icon: Sparkles,
+    gradient: "from-amber-500 to-orange-500",
+    hoverBg: "hover:bg-amber-50 dark:hover:bg-amber-900/20",
+    activeText: "text-amber-600 dark:text-amber-400",
+    activeBg: "bg-amber-50 dark:bg-amber-900/20",
+    activeBorder: "border-amber-200 dark:border-amber-700/50",
+    badge: null,
+  },
+];
+
+const moreToolItems = [
+  {
     href: "/video-to-gif",
     label: "Video to GIF",
     icon: ImageIcon,
@@ -125,17 +127,6 @@ const navItems = [
     activeText: "text-emerald-600 dark:text-emerald-400",
     activeBg: "bg-emerald-50 dark:bg-emerald-900/20",
     activeBorder: "border-emerald-200 dark:border-emerald-700/50",
-    badge: null,
-  },
-  {
-    href: "/features",
-    label: "Features",
-    icon: Sparkles,
-    gradient: "from-amber-500 to-orange-500",
-    hoverBg: "hover:bg-amber-50 dark:hover:bg-amber-900/20",
-    activeText: "text-amber-600 dark:text-amber-400",
-    activeBg: "bg-amber-50 dark:bg-amber-900/20",
-    activeBorder: "border-amber-200 dark:border-amber-700/50",
     badge: null,
   },
 ];
@@ -206,7 +197,7 @@ export default function Header() {
 
   const isActive = (path: string) =>
     path === "/" ? pathname === "/" : pathname === path;
-  const hasActiveSecondaryItem = secondaryItems.some((item) =>
+  const hasActiveMoreItem = [...moreToolItems, ...secondaryItems].some((item) =>
     isActive(item.href),
   );
 
@@ -293,7 +284,7 @@ export default function Header() {
             <button
               onClick={() => setIsMenuOpen((open) => !open)}
               className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-semibold transition-all duration-200 ${
-                isMenuOpen || hasActiveSecondaryItem
+                isMenuOpen || hasActiveMoreItem
                   ? "border-gray-300 bg-gray-100 text-gray-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
                   : "border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:border-zinc-700/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
               }`}
@@ -308,11 +299,12 @@ export default function Header() {
 
             {isMenuOpen && (
               <div className="absolute right-0 top-full mt-2 w-[min(92vw,360px)] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-900">
-                <div className="grid gap-1 p-3 lg:hidden">
+                <div className="grid gap-1 p-3">
                   <p className="px-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
-                    Tools
+                    More Tools
                   </p>
-                  {navItems.map((item) => {
+                  <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-1">
+                  {moreToolItems.map((item) => {
                     const Icon = item.icon;
                     const active = isActive(item.href);
                     return (
@@ -334,6 +326,37 @@ export default function Header() {
                       </Link>
                     );
                   })}
+                  </div>
+                </div>
+
+                <div className="grid gap-1 border-t border-gray-100 p-3 dark:border-zinc-800 lg:hidden">
+                  <p className="px-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
+                    Main Tools
+                  </p>
+                  <div className="grid gap-1 sm:grid-cols-2">
+                    {navItems.map((item) => {
+                      const Icon = item.icon;
+                      const active = isActive(item.href);
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
+                            active
+                              ? `${item.activeBg} ${item.activeText}`
+                              : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+                          }`}
+                        >
+                          <span
+                            className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm`}
+                          >
+                            <Icon className="h-3.5 w-3.5 text-white" />
+                          </span>
+                          {item.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <div className="grid gap-1 border-t border-gray-100 p-3 dark:border-zinc-800 lg:border-t-0">
