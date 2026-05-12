@@ -36,7 +36,7 @@ const navItems = [
     activeText: "text-violet-600 dark:text-violet-400",
     activeBg: "bg-violet-50 dark:bg-violet-900/20",
     activeBorder: "border-violet-200 dark:border-violet-700/50",
-    badge: "NEW",
+    badge: null,
   },
   {
     href: "/trim-video",
@@ -294,7 +294,7 @@ export default function Header() {
               ) : (
                 <ChevronDown className="h-4 w-4" />
               )}
-              More
+              More Tools
             </button>
 
             {isMenuOpen && (
