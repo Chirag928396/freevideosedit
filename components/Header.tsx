@@ -3,6 +3,7 @@
 import { useTheme } from "@/components/ThemeProvider";
 import {
   BookOpen,
+  ChevronDown,
   Droplet,
   FileText,
   FileVideo,
@@ -20,9 +21,11 @@ import {
   Sparkles,
   Sun,
   Video,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 const navItems = [
   {
@@ -135,6 +138,9 @@ const navItems = [
     activeBorder: "border-amber-200 dark:border-amber-700/50",
     badge: null,
   },
+];
+
+const secondaryItems = [
   {
     href: "/blog",
     label: "Blog",
@@ -193,15 +199,35 @@ const navItems = [
 ];
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
 
   const isActive = (path: string) =>
     path === "/" ? pathname === "/" : pathname === path;
+  const hasActiveSecondaryItem = secondaryItems.some((item) =>
+    isActive(item.href),
+  );
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-md dark:border-zinc-800/50 dark:bg-zinc-900/80">
-      <div className="mx-auto flex max-w-[1800px] items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
+      <div className="mx-auto flex max-w-[1800px] items-center gap-4 px-4 py-2.5 sm:px-6">
         <Link href="/" className="flex flex-shrink-0 items-center gap-2.5">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-gray-900 to-gray-700 shadow-lg dark:from-white dark:to-gray-200">
             <Video
@@ -217,51 +243,131 @@ export default function Header() {
           </span>
         </Link>
 
-        <button
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-          className="rounded-xl p-2 text-gray-500 transition-all duration-200 hover:scale-105 hover:bg-gray-100 hover:text-gray-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
+        <nav
+          aria-label="Main navigation"
+          className="hidden min-w-0 flex-1 items-center justify-center gap-1.5 lg:flex"
         >
-          {theme === "dark" ? (
-            <Sun className="h-5 w-5" />
-          ) : (
-            <Moon className="h-5 w-5" />
-          )}
-        </button>
-      </div>
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`group relative flex min-w-0 items-center gap-1.5 rounded-xl border px-2.5 py-2 text-sm font-semibold transition-all duration-200 xl:gap-2 xl:px-3 ${
+                  active
+                    ? `${item.activeBg} ${item.activeText} ${item.activeBorder} shadow-sm`
+                    : `border-transparent text-gray-500 ${item.hoverBg} hover:text-gray-800 dark:text-zinc-400 dark:hover:text-zinc-200`
+                }`}
+              >
+                <span
+                  className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm transition-transform group-hover:scale-110`}
+                >
+                  <Icon className="h-3.5 w-3.5 text-white" strokeWidth={2.5} />
+                </span>
+                <span className="whitespace-nowrap">{item.label}</span>
+                {item.badge && (
+                  <span className="absolute -right-1.5 -top-1.5 rounded-full bg-gradient-to-r from-violet-500 to-indigo-500 px-1.5 py-0.5 text-[9px] font-bold leading-none text-white shadow">
+                    {item.badge}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+        </nav>
 
-      <nav
-        aria-label="Main navigation"
-        className="mx-auto flex max-w-[1800px] gap-1.5 overflow-x-auto px-4 pb-2 sm:px-6"
-      >
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const active = isActive(item.href);
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`group relative flex flex-shrink-0 items-center gap-2 rounded-xl border px-3 py-2 text-sm font-semibold transition-all duration-200 ${
-                active
-                  ? `${item.activeBg} ${item.activeText} ${item.activeBorder} shadow-sm`
-                  : `border-transparent text-gray-500 ${item.hoverBg} hover:text-gray-800 dark:text-zinc-400 dark:hover:text-zinc-200`
+        <div className="ml-auto flex flex-shrink-0 items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="rounded-xl p-2 text-gray-500 transition-all duration-200 hover:scale-105 hover:bg-gray-100 hover:text-gray-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </button>
+
+          <div className="relative" ref={menuRef}>
+            <button
+              onClick={() => setIsMenuOpen((open) => !open)}
+              className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-semibold transition-all duration-200 ${
+                isMenuOpen || hasActiveSecondaryItem
+                  ? "border-gray-300 bg-gray-100 text-gray-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
+                  : "border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:border-zinc-700/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
               }`}
             >
-              <span
-                className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm transition-transform group-hover:scale-110`}
-              >
-                <Icon className="h-3.5 w-3.5 text-white" strokeWidth={2.5} />
-              </span>
-              <span className="whitespace-nowrap">{item.label}</span>
-              {item.badge && (
-                <span className="absolute -right-1.5 -top-1.5 rounded-full bg-gradient-to-r from-violet-500 to-indigo-500 px-1.5 py-0.5 text-[9px] font-bold leading-none text-white shadow">
-                  {item.badge}
-                </span>
+              {isMenuOpen ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
               )}
-            </Link>
-          );
-        })}
-      </nav>
+              More
+            </button>
+
+            {isMenuOpen && (
+              <div className="absolute right-0 top-full mt-2 w-[min(92vw,360px)] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-900">
+                <div className="grid gap-1 p-3 lg:hidden">
+                  <p className="px-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
+                    Tools
+                  </p>
+                  {navItems.map((item) => {
+                    const Icon = item.icon;
+                    const active = isActive(item.href);
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
+                          active
+                            ? `${item.activeBg} ${item.activeText}`
+                            : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+                        }`}
+                      >
+                        <span
+                          className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm`}
+                        >
+                          <Icon className="h-3.5 w-3.5 text-white" />
+                        </span>
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                <div className="grid gap-1 border-t border-gray-100 p-3 dark:border-zinc-800 lg:border-t-0">
+                  <p className="px-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
+                    Pages
+                  </p>
+                  {secondaryItems.map((item) => {
+                    const Icon = item.icon;
+                    const active = isActive(item.href);
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
+                          active
+                            ? `${item.activeBg} ${item.activeText}`
+                            : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+                        }`}
+                      >
+                        <span
+                          className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm`}
+                        >
+                          <Icon className="h-3.5 w-3.5 text-white" />
+                        </span>
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </header>
   );
 }
