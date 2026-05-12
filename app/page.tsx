@@ -6,6 +6,9 @@ import {
   Minimize2,
   Play,
   Layers,
+  BadgeCheck,
+  Clock,
+  Gauge,
 } from "lucide-react";
 import Link from "next/link";
 import Footer from "@/components/Footer";
@@ -286,6 +289,101 @@ export default function Home() {
                 conversion, and watermarking tools.
               </p>
             </div>
+          </div>
+        </section>
+
+        <section className="mt-24 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-zinc-800/50 dark:bg-zinc-900/50 md:p-12">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-900 dark:bg-white">
+                <BadgeCheck className="h-6 w-6 text-white dark:text-black" />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                Latest Video Features for Everyday Creators
+              </h2>
+              <p className="mt-4 leading-relaxed text-gray-600 dark:text-zinc-400">
+                FreeVideosEdit is built for fast, practical video jobs that do
+                not need a full desktop editor. Use it to prepare social clips,
+                compress videos for email, convert files for different devices,
+                merge short clips, or add branding before sharing drafts.
+              </p>
+              <Link
+                href="/features"
+                className="mt-6 inline-flex items-center rounded-lg bg-gray-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-gray-700 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+              >
+                Explore Latest Features
+              </Link>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                {
+                  title: "Social video prep",
+                  text: "Trim dead air, convert to MP4, and compress clips before posting to YouTube, Instagram, TikTok, or WhatsApp.",
+                  icon: Play,
+                },
+                {
+                  title: "Private file handling",
+                  text: "Browser-based processing keeps your raw footage on your device instead of sending it to a remote server.",
+                  icon: Video,
+                },
+                {
+                  title: "Smaller share files",
+                  text: "Use compression presets to reduce large recordings for email, chat apps, client review, and classroom sharing.",
+                  icon: Gauge,
+                },
+                {
+                  title: "Fast format fixes",
+                  text: "Turn MOV, WebM, AVI, MKV, or other common files into formats that work better on your destination platform.",
+                  icon: Clock,
+                },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-zinc-800 dark:bg-zinc-950/50"
+                  >
+                    <Icon className="mb-3 h-5 w-5 text-gray-900 dark:text-white" />
+                    <h3 className="font-bold text-gray-900 dark:text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-zinc-400">
+                      {item.text}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-16">
+          <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-white">
+            Which Tool Should You Use?
+          </h2>
+          <div className="mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-zinc-800/50 dark:bg-zinc-900/50">
+            <div className="grid grid-cols-3 bg-gray-100 text-sm font-bold text-gray-700 dark:bg-zinc-800 dark:text-zinc-200">
+              <div className="p-4">Task</div>
+              <div className="p-4">Recommended Tool</div>
+              <div className="p-4">Best Output</div>
+            </div>
+            {[
+              ["Remove mistakes or silence", "Trim Video", "Short MP4 clip"],
+              ["Join several phone clips", "Combine Videos", "One MP4 file"],
+              ["Send through email", "Compress Video", "MP4 under the limit"],
+              ["Extract audio", "Convert Format", "MP3 audio"],
+              ["Protect a preview", "Add Watermark", "Branded MP4"],
+            ].map(([task, tool, output]) => (
+              <div
+                key={task}
+                className="grid grid-cols-3 border-t border-gray-200 text-sm text-gray-600 dark:border-zinc-800 dark:text-zinc-400"
+              >
+                <div className="p-4">{task}</div>
+                <div className="p-4">{tool}</div>
+                <div className="p-4">{output}</div>
+              </div>
+            ))}
           </div>
         </section>
       </main>

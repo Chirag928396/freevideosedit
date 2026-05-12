@@ -36,6 +36,14 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
+                  href="/video-combine"
+                  className="text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm"
+                >
+                  Combine Videos
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/trim-video"
                   className="text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm"
                 >
@@ -75,6 +83,14 @@ export default function Footer() {
               Resources
             </h4>
             <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/features"
+                  className="text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm"
+                >
+                  Latest Features
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/blog"

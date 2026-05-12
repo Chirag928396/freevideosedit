@@ -1,106 +1,65 @@
-/**
- * AdSpace Component - Centralized Ad Management
- *
- * This component is used across ALL pages for consistent ad placement.
- *
- * IMPORTANT: To update ads site-wide, only edit THIS file.
- *
- * Usage:
- * - Left sidebar: <AdSpace position="left" />
- * - Right sidebar: <AdSpace position="right" />
- *
- * Pages using this component:
- * - Home page (/)
- * - All tool pages (/trim-video, /video-watermark, /video-compress, /video-converter, /trim)
- * - Blog page (/blog)
- * - Blog detail pages (/blog/[slug])
- * - About page (/about)
- * - Contact page (/contact)
- * - Privacy page (/privacy)
- * - Terms page (/terms)
- *
- * To add your own ads:
- * 1. Replace the placeholder content below with your ad code
- * 2. You can use images, iframes, or any HTML/JSX
- * 3. Example formats shown in comments below
- */
+import { CheckCircle, FileVideo, Shield, Sparkles } from "lucide-react";
 
 interface AdSpaceProps {
   position: "left" | "right";
 }
 
 export default function AdSpace({ position }: AdSpaceProps) {
+  const leftItems = [
+    "Trim before compressing to remove wasted seconds.",
+    "Use MP4 H.264 when you need the widest compatibility.",
+    "Keep short social clips under 60 seconds when possible.",
+    "Preview the final file before sharing or uploading.",
+  ];
+
+  const rightItems = [
+    "Files are processed locally in your browser.",
+    "Large 4K clips need more device memory and battery.",
+    "Use WebM for website backgrounds and MP4 for sharing.",
+    "Add a watermark before posting client previews online.",
+  ];
+
+  const items = position === "left" ? leftItems : rightItems;
+  const title = position === "left" ? "Editing Checklist" : "Privacy Notes";
+  const Icon = position === "left" ? Sparkles : Shield;
+
   return (
     <aside className="hidden xl:block">
       <div className="sticky top-20">
-        <div className="bg-gray-100/50 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800/50 rounded-xl p-4 h-[600px] flex items-center justify-center backdrop-blur-sm">
-          {/* 
-            ========================================
-            EDIT YOUR AD CONTENT BELOW
-            ========================================
-          */}
-
-          {/* Current: Placeholder */}
-          <div className="text-center text-zinc-500">
-            {/* <div className="mb-2 text-3xl">📢</div>
-            <p className="text-sm">
-              {position === "left" ? "Left" : "Right"} Ad Space
-            </p>
-            <p className="text-xs mt-1 text-zinc-600">160x600</p> */}
+        <div className="min-h-[420px] rounded-xl border border-gray-200 bg-white p-5 shadow-sm dark:border-zinc-800/50 dark:bg-zinc-900/70">
+          <div className="mb-5 flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 dark:bg-white">
+              <Icon className="h-5 w-5 text-white dark:text-black" />
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
+                Helpful Guide
+              </p>
+              <h2 className="font-bold text-gray-900 dark:text-white">
+                {title}
+              </h2>
+            </div>
           </div>
 
-          {/* 
-            Example 1: Image Ad
-            --------------------
-            <a href="https://your-ad-link.com" target="_blank" rel="noopener noreferrer">
-              <img 
-                src="/ads/banner-160x600.jpg" 
-                alt="Advertisement" 
-                className="w-full h-auto rounded-lg"
-              />
-            </a>
-          */}
+          <ul className="space-y-4">
+            {items.map((item) => (
+              <li key={item} className="flex gap-3 text-sm leading-relaxed">
+                <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                <span className="text-gray-600 dark:text-zinc-400">{item}</span>
+              </li>
+            ))}
+          </ul>
 
-          {/* 
-            Example 2: Google AdSense
-            -------------------------
-            <ins className="adsbygoogle"
-              style={{ display: 'inline-block', width: '160px', height: '600px' }}
-              data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-              data-ad-slot="XXXXXXXXXX">
-            </ins>
-          */}
-
-          {/* 
-            Example 3: Different ads for left/right
-            ----------------------------------------
-            {position === 'left' ? (
-              <a href="https://left-ad.com" target="_blank" rel="noopener noreferrer">
-                <img src="/ads/left-banner.jpg" alt="Left Ad" />
-              </a>
-            ) : (
-              <a href="https://right-ad.com" target="_blank" rel="noopener noreferrer">
-                <img src="/ads/right-banner.jpg" alt="Right Ad" />
-              </a>
-            )}
-          */}
-
-          {/* 
-            Example 4: HTML/Custom Ad
-            --------------------------
-            <div className="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg p-4 flex flex-col items-center justify-center text-white">
-              <h3 className="text-xl font-bold mb-2">Your Brand</h3>
-              <p className="text-sm text-center mb-4">Special Offer!</p>
-              <a 
-                href="https://your-link.com" 
-                className="px-4 py-2 bg-white text-black rounded-lg font-bold hover:bg-gray-100"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn More
-              </a>
+          <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-zinc-800 dark:bg-zinc-950/60">
+            <div className="flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white">
+              <FileVideo className="h-4 w-4" />
+              Best default export
             </div>
-          */}
+            <p className="mt-2 text-xs leading-relaxed text-gray-500 dark:text-zinc-500">
+              MP4 with H.264 video and AAC audio is the safest choice for
+              YouTube, Instagram, WhatsApp, email, and most browsers.
+            </p>
+          </div>
         </div>
       </div>
     </aside>

@@ -9,6 +9,7 @@ import {
   BookOpen,
   Info,
   Mail,
+  Sparkles,
   Sun,
   Moon,
   Layers,
@@ -223,6 +224,15 @@ export default function Header() {
                     Pages
                   </p>
                   <div className="space-y-0.5">
+                    <Link
+                      href="/features"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-gray-900 dark:hover:text-white transition-all"
+                    >
+                      <span className="w-7 h-7 rounded-lg bg-gray-100 dark:bg-zinc-800 flex items-center justify-center flex-shrink-0">
+                        <Sparkles className="w-3.5 h-3.5 text-gray-600 dark:text-zinc-400" />
+                      </span>
+                      Features
+                    </Link>
                     <Link
                       href="/blog"
                       className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-gray-900 dark:hover:text-white transition-all"
