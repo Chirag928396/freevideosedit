@@ -26,6 +26,21 @@ export const metadata: Metadata = {
       "Have questions or feedback? Contact our team. We're here to help.",
     url: pageUrl,
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Contact FreeVideosEdit",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact FreeVideosEdit",
+    description:
+      "Have questions or feedback? Contact our team. We're here to help.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

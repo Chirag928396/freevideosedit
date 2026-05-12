@@ -27,6 +27,21 @@ export const metadata: Metadata = {
       "Extract audio from video files and download MP3 audio in your browser.",
     url: pageUrl,
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "FreeVideosEdit Video to MP3 Converter",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Video to MP3 Converter Online",
+    description:
+      "Extract audio from video files and download MP3 audio in your browser.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

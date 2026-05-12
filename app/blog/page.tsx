@@ -33,6 +33,21 @@ export const metadata: Metadata = {
       "Learn how to edit videos like a pro with our free tutorials and guides.",
     url: pageUrl,
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "FreeVideosEdit Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Video Editing Blog",
+    description:
+      "Learn how to edit videos like a pro with our free tutorials and guides.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

@@ -27,6 +27,21 @@ export const metadata: Metadata = {
       "Create animated GIFs from videos with private browser-based conversion.",
     url: pageUrl,
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "FreeVideosEdit Video to GIF Converter",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Video to GIF Converter Online",
+    description:
+      "Create animated GIFs from videos with private browser-based conversion.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

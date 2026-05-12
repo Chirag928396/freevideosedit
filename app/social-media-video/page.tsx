@@ -27,6 +27,21 @@ export const metadata: Metadata = {
       "Make videos smaller and easier to share on social platforms and messaging apps.",
     url: pageUrl,
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "FreeVideosEdit Social Media Video Compressor",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Social Media Video Compressor",
+    description:
+      "Make videos smaller and easier to share on social platforms and messaging apps.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

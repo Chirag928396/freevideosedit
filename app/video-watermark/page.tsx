@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${siteUrl}/og-video-watermark.png`,
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "FreeVideosEdit Video Watermark Tool",
@@ -64,6 +64,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Online Video Watermark",
     description: "Add text or logo watermarks to your videos online for free.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

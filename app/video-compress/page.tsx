@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${siteUrl}/og-video-compress.png`,
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "FreeVideosEdit Video Compressor Tool",
@@ -66,6 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Online Video Compressor",
     description: "Compress videos online. Reduce size without quality loss.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

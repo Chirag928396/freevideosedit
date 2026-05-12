@@ -1,16 +1,17 @@
-<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <!-- Maroon background -->
-  <rect width="32" height="32" fill="#800020" rx="4"/>
-  
-  <!-- Video play button -->
-  <circle cx="16" cy="16" r="12" fill="#ffffff" opacity="0.9"/>
-  <path d="M12 10 L12 22 L22 16 Z" fill="#800020"/>
-  
-  <!-- Scissors icon overlay -->
-  <g transform="translate(20, 8) scale(0.6)">
-    <path d="M8 4 L12 8 L8 12 L4 8 Z" fill="#ffffff"/>
-    <path d="M12 4 L16 8 L12 12 L8 8 Z" fill="#ffffff"/>
-    <circle cx="6" cy="6" r="1.5" fill="#800020"/>
-    <circle cx="14" cy="10" r="1.5" fill="#800020"/>
-  </g>
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FreeVideosEdit">
+  <defs>
+    <linearGradient id="bg" x1="12" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#09090b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="18" y1="16" x2="48" y2="46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38bdf8"/>
+      <stop offset="0.52" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <path d="M17 21.5C17 18.46 19.46 16 22.5 16h19C44.54 16 47 18.46 47 21.5v21C47 45.54 44.54 48 41.5 48h-19C19.46 48 17 45.54 17 42.5v-21Z" fill="#ffffff"/>
+  <path d="M27 25.4v13.2c0 1.42 1.55 2.3 2.77 1.56l10.93-6.6c1.18-.72 1.18-2.4 0-3.12l-10.93-6.6C28.55 23.1 27 23.98 27 25.4Z" fill="url(#accent)"/>
+  <path d="M18 25h7M18 32h5M18 39h7M39 16v7M32 16v5M25 16v7" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/>
 </svg>

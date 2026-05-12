@@ -1,31 +1,41 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import Link from "next/link";
+import { useTheme } from "@/components/ThemeProvider";
 import {
-  Video,
-  Menu,
-  X,
   BookOpen,
+  Droplet,
+  FileText,
+  FileVideo,
+  Home,
+  Image as ImageIcon,
   Info,
+  Layers,
   Mail,
+  Minimize2,
+  Moon,
+  Music,
+  Scissors,
+  Shield,
+  Smartphone,
   Sparkles,
   Sun,
-  Moon,
-  Layers,
-  Scissors,
-  Droplet,
-  Minimize2,
-  FileVideo,
-  ChevronDown,
-  Music,
-  Image as ImageIcon,
-  Smartphone,
+  Video,
 } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTheme } from "@/components/ThemeProvider";
 
-const navTools = [
+const navItems = [
+  {
+    href: "/",
+    label: "Home",
+    icon: Home,
+    gradient: "from-gray-900 to-gray-700",
+    hoverBg: "hover:bg-gray-50 dark:hover:bg-zinc-800",
+    activeText: "text-gray-900 dark:text-white",
+    activeBg: "bg-gray-100 dark:bg-zinc-800",
+    activeBorder: "border-gray-200 dark:border-zinc-700",
+    badge: null,
+  },
   {
     href: "/video-combine",
     label: "Combine",
@@ -81,233 +91,177 @@ const navTools = [
     activeBorder: "border-pink-200 dark:border-pink-700/50",
     badge: null,
   },
-];
-
-const popularPages = [
   {
     href: "/video-to-mp3",
     label: "Video to MP3",
     icon: Music,
+    gradient: "from-sky-500 to-cyan-600",
+    hoverBg: "hover:bg-sky-50 dark:hover:bg-sky-900/20",
+    activeText: "text-sky-600 dark:text-sky-400",
+    activeBg: "bg-sky-50 dark:bg-sky-900/20",
+    activeBorder: "border-sky-200 dark:border-sky-700/50",
+    badge: null,
   },
   {
     href: "/video-to-gif",
     label: "Video to GIF",
     icon: ImageIcon,
+    gradient: "from-fuchsia-500 to-rose-600",
+    hoverBg: "hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20",
+    activeText: "text-fuchsia-600 dark:text-fuchsia-400",
+    activeBg: "bg-fuchsia-50 dark:bg-fuchsia-900/20",
+    activeBorder: "border-fuchsia-200 dark:border-fuchsia-700/50",
+    badge: null,
   },
   {
     href: "/social-media-video",
-    label: "Social Media Video",
+    label: "Social Video",
     icon: Smartphone,
+    gradient: "from-emerald-500 to-lime-600",
+    hoverBg: "hover:bg-emerald-50 dark:hover:bg-emerald-900/20",
+    activeText: "text-emerald-600 dark:text-emerald-400",
+    activeBg: "bg-emerald-50 dark:bg-emerald-900/20",
+    activeBorder: "border-emerald-200 dark:border-emerald-700/50",
+    badge: null,
+  },
+  {
+    href: "/features",
+    label: "Features",
+    icon: Sparkles,
+    gradient: "from-amber-500 to-orange-500",
+    hoverBg: "hover:bg-amber-50 dark:hover:bg-amber-900/20",
+    activeText: "text-amber-600 dark:text-amber-400",
+    activeBg: "bg-amber-50 dark:bg-amber-900/20",
+    activeBorder: "border-amber-200 dark:border-amber-700/50",
+    badge: null,
+  },
+  {
+    href: "/blog",
+    label: "Blog",
+    icon: BookOpen,
+    gradient: "from-blue-500 to-indigo-600",
+    hoverBg: "hover:bg-blue-50 dark:hover:bg-blue-900/20",
+    activeText: "text-blue-600 dark:text-blue-400",
+    activeBg: "bg-blue-50 dark:bg-blue-900/20",
+    activeBorder: "border-blue-200 dark:border-blue-700/50",
+    badge: null,
+  },
+  {
+    href: "/about",
+    label: "About",
+    icon: Info,
+    gradient: "from-slate-500 to-slate-700",
+    hoverBg: "hover:bg-slate-50 dark:hover:bg-slate-900/20",
+    activeText: "text-slate-700 dark:text-slate-300",
+    activeBg: "bg-slate-50 dark:bg-slate-900/20",
+    activeBorder: "border-slate-200 dark:border-slate-700/50",
+    badge: null,
+  },
+  {
+    href: "/contact",
+    label: "Contact",
+    icon: Mail,
+    gradient: "from-teal-500 to-cyan-600",
+    hoverBg: "hover:bg-teal-50 dark:hover:bg-teal-900/20",
+    activeText: "text-teal-600 dark:text-teal-400",
+    activeBg: "bg-teal-50 dark:bg-teal-900/20",
+    activeBorder: "border-teal-200 dark:border-teal-700/50",
+    badge: null,
+  },
+  {
+    href: "/privacy",
+    label: "Privacy",
+    icon: Shield,
+    gradient: "from-green-500 to-emerald-600",
+    hoverBg: "hover:bg-green-50 dark:hover:bg-green-900/20",
+    activeText: "text-green-600 dark:text-green-400",
+    activeBg: "bg-green-50 dark:bg-green-900/20",
+    activeBorder: "border-green-200 dark:border-green-700/50",
+    badge: null,
+  },
+  {
+    href: "/terms",
+    label: "Terms",
+    icon: FileText,
+    gradient: "from-zinc-500 to-zinc-700",
+    hoverBg: "hover:bg-zinc-50 dark:hover:bg-zinc-800",
+    activeText: "text-zinc-700 dark:text-zinc-300",
+    activeBg: "bg-zinc-50 dark:bg-zinc-800",
+    activeBorder: "border-zinc-200 dark:border-zinc-700",
+    badge: null,
   },
 ];
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
-
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) =>
+    path === "/" ? pathname === "/" : pathname === path;
 
   return (
-    <header className="bg-white/90 dark:bg-zinc-900/80 backdrop-blur-md border-b border-gray-200 dark:border-zinc-800/50 sticky top-0 z-50">
-      <div className="max-w-[1800px] mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-          <div className="w-9 h-9 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 rounded-xl flex items-center justify-center shadow-lg">
-            <Video className="w-5 h-5 text-white dark:text-black" strokeWidth={2.5} />
+    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-md dark:border-zinc-800/50 dark:bg-zinc-900/80">
+      <div className="mx-auto flex max-w-[1800px] items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
+        <Link href="/" className="flex flex-shrink-0 items-center gap-2.5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-gray-900 to-gray-700 shadow-lg dark:from-white dark:to-gray-200">
+            <Video
+              className="h-5 w-5 text-white dark:text-black"
+              strokeWidth={2.5}
+            />
           </div>
           <span
-            className="text-2xl font-bold text-gray-900 dark:text-white hidden sm:block"
+            className="hidden text-2xl font-bold text-gray-900 dark:text-white sm:block"
             style={{ fontFamily: "'Dancing Script', cursive" }}
           >
             FreeVideosEdit
           </span>
         </Link>
 
-        {/* Desktop Nav — icon pill buttons */}
-        <nav className="hidden lg:flex items-center gap-1.5">
-          {navTools.map((tool) => {
-            const Icon = tool.icon;
-            const active = isActive(tool.href);
-            return (
-              <Link
-                key={tool.href}
-                href={tool.href}
-                className={`relative flex items-center gap-2 px-3.5 py-2 rounded-xl border text-sm font-semibold transition-all duration-200 group ${
-                  active
-                    ? `${tool.activeBg} ${tool.activeText} ${tool.activeBorder} shadow-sm`
-                    : `border-transparent text-gray-500 dark:text-zinc-400 ${tool.hoverBg} hover:text-gray-800 dark:hover:text-zinc-200`
-                }`}
-              >
-                {/* Icon with gradient background */}
-                <span
-                  className={`w-6 h-6 rounded-lg bg-gradient-to-br ${tool.gradient} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform flex-shrink-0`}
-                >
-                  <Icon className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
-                </span>
-                {tool.label}
-                {/* NEW badge */}
-                {tool.badge && (
-                  <span className="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-violet-500 to-indigo-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow leading-none">
-                    {tool.badge}
-                  </span>
-                )}
-              </Link>
-            );
-          })}
-        </nav>
+        <button
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+          className="rounded-xl p-2 text-gray-500 transition-all duration-200 hover:scale-105 hover:bg-gray-100 hover:text-gray-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
+        >
+          {theme === "dark" ? (
+            <Sun className="h-5 w-5" />
+          ) : (
+            <Moon className="h-5 w-5" />
+          )}
+        </button>
+      </div>
 
-        {/* Right controls */}
-        <div className="flex items-center gap-2">
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="p-2 text-gray-500 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-xl transition-all duration-200 hover:scale-105"
-          >
-            {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </button>
-
-          {/* Hamburger / More menu */}
-          <div className="relative" ref={menuRef}>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 border ${
-                isMenuOpen
-                  ? "bg-gray-100 dark:bg-zinc-800 border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white"
-                  : "border-gray-200 dark:border-zinc-700/50 text-gray-500 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 hover:text-gray-900 dark:hover:text-white"
+      <nav
+        aria-label="Main navigation"
+        className="mx-auto flex max-w-[1800px] gap-1.5 overflow-x-auto px-4 pb-2 sm:px-6"
+      >
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const active = isActive(item.href);
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`group relative flex flex-shrink-0 items-center gap-2 rounded-xl border px-3 py-2 text-sm font-semibold transition-all duration-200 ${
+                active
+                  ? `${item.activeBg} ${item.activeText} ${item.activeBorder} shadow-sm`
+                  : `border-transparent text-gray-500 ${item.hoverBg} hover:text-gray-800 dark:text-zinc-400 dark:hover:text-zinc-200`
               }`}
             >
-              {isMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-              <span className="hidden sm:inline">More</span>
-              <ChevronDown
-                className={`w-3.5 h-3.5 transition-transform duration-200 ${isMenuOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-
-            {/* Dropdown */}
-            {isMenuOpen && (
-              <div className="absolute right-0 top-full mt-2 w-64 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl shadow-2xl overflow-hidden z-50">
-                {/* Tools section — only on mobile (lg hidden) */}
-                <div className="lg:hidden p-3 border-b border-gray-100 dark:border-zinc-800">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500 px-2 mb-2">
-                    Tools
-                  </p>
-                  <div className="space-y-0.5">
-                    {navTools.map((tool) => {
-                      const Icon = tool.icon;
-                      const active = isActive(tool.href);
-                      return (
-                        <Link
-                          key={tool.href}
-                          href={tool.href}
-                          className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                            active
-                              ? `${tool.activeBg} ${tool.activeText}`
-                              : "text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800"
-                          }`}
-                        >
-                          <span
-                            className={`w-7 h-7 rounded-lg bg-gradient-to-br ${tool.gradient} flex items-center justify-center shadow-sm flex-shrink-0`}
-                          >
-                            <Icon className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
-                          </span>
-                          <span>{tool.label} Video</span>
-                          {tool.badge && (
-                            <span className="ml-auto bg-gradient-to-r from-violet-500 to-indigo-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">
-                              {tool.badge}
-                            </span>
-                          )}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Pages section */}
-                <div className="p-3">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500 px-2 mb-2">
-                    Popular
-                  </p>
-                  <div className="space-y-0.5 border-b border-gray-100 pb-3 dark:border-zinc-800">
-                    {popularPages.map((page) => {
-                      const Icon = page.icon;
-                      return (
-                        <Link
-                          key={page.href}
-                          href={page.href}
-                          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-gray-900 dark:hover:text-white transition-all"
-                        >
-                          <span className="w-7 h-7 rounded-lg bg-gray-100 dark:bg-zinc-800 flex items-center justify-center flex-shrink-0">
-                            <Icon className="w-3.5 h-3.5 text-gray-600 dark:text-zinc-400" />
-                          </span>
-                          {page.label}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                  <p className="mt-3 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500 px-2 mb-2">
-                    Pages
-                  </p>
-                  <div className="space-y-0.5">
-                    <Link
-                      href="/features"
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-gray-900 dark:hover:text-white transition-all"
-                    >
-                      <span className="w-7 h-7 rounded-lg bg-gray-100 dark:bg-zinc-800 flex items-center justify-center flex-shrink-0">
-                        <Sparkles className="w-3.5 h-3.5 text-gray-600 dark:text-zinc-400" />
-                      </span>
-                      Features
-                    </Link>
-                    <Link
-                      href="/blog"
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-gray-900 dark:hover:text-white transition-all"
-                    >
-                      <span className="w-7 h-7 rounded-lg bg-gray-100 dark:bg-zinc-800 flex items-center justify-center flex-shrink-0">
-                        <BookOpen className="w-3.5 h-3.5 text-gray-600 dark:text-zinc-400" />
-                      </span>
-                      Blog
-                    </Link>
-                    <Link
-                      href="/about"
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-gray-900 dark:hover:text-white transition-all"
-                    >
-                      <span className="w-7 h-7 rounded-lg bg-gray-100 dark:bg-zinc-800 flex items-center justify-center flex-shrink-0">
-                        <Info className="w-3.5 h-3.5 text-gray-600 dark:text-zinc-400" />
-                      </span>
-                      About Us
-                    </Link>
-                    <Link
-                      href="/contact"
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-gray-900 dark:hover:text-white transition-all"
-                    >
-                      <span className="w-7 h-7 rounded-lg bg-gray-100 dark:bg-zinc-800 flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-3.5 h-3.5 text-gray-600 dark:text-zinc-400" />
-                      </span>
-                      Contact Us
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+              <span
+                className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm transition-transform group-hover:scale-110`}
+              >
+                <Icon className="h-3.5 w-3.5 text-white" strokeWidth={2.5} />
+              </span>
+              <span className="whitespace-nowrap">{item.label}</span>
+              {item.badge && (
+                <span className="absolute -right-1.5 -top-1.5 rounded-full bg-gradient-to-r from-violet-500 to-indigo-500 px-1.5 py-0.5 text-[9px] font-bold leading-none text-white shadow">
+                  {item.badge}
+                </span>
+              )}
+            </Link>
+          );
+        })}
+      </nav>
     </header>
   );
 }

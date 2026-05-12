@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${siteUrl}/og-video-converter.png`,
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "FreeVideosEdit Video Converter Tool",
@@ -64,6 +64,7 @@ export const metadata: Metadata = {
     title: "Free Online Video Converter",
     description:
       "Convert videos to any format online. MP4, AVI, MOV, MP3, GIF.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

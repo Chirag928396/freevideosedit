@@ -45,12 +45,21 @@ export const metadata: Metadata = {
       "Combine multiple videos into one online for free. No downloads required.",
     url: pageUrl,
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "FreeVideosEdit Video Combiner Tool",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Free Online Video Combiner",
     description:
       "Merge and join videos online for free. No download required.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

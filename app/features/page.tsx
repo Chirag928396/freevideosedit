@@ -32,6 +32,21 @@ export const metadata: Metadata = {
       "A practical guide to FreeVideosEdit video tools, supported formats, privacy features, and recommended export workflows.",
     url: pageUrl,
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Latest FreeVideosEdit Features",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Latest Online Video Editing Features for 2026",
+    description:
+      "A practical guide to FreeVideosEdit video tools and recommended export workflows.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

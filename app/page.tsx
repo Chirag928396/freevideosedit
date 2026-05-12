@@ -48,6 +48,21 @@ export const metadata: Metadata = {
       "Edit videos online for free. Trim, compress, convert, and add watermarks directly in your browser. No downloads required.",
     url: siteUrl,
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "FreeVideosEdit Online Video Editor",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Online Video Editor - FreeVideosEdit",
+    description:
+      "Trim, compress, convert, combine, watermark, make GIFs, and extract MP3 audio in your browser.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

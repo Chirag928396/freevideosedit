@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${siteUrl}/og-trim-video.png`,
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "FreeVideosEdit Video Trimmer Tool",
@@ -64,6 +64,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Online Video Trimmer",
     description: "Trim and cut videos online for free. No download required.",
+    images: [`${siteUrl}/twitter-image`],
   },
 };
 

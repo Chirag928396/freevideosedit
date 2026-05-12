@@ -9,6 +9,13 @@ import { notFound } from "next/navigation";
 
 const siteUrl = "https://freevidosedit.com";
 
+function toIsoDate(date: string) {
+  const parsed = new Date(date);
+  return Number.isNaN(parsed.getTime())
+    ? new Date().toISOString()
+    : parsed.toISOString();
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -23,6 +30,7 @@ export async function generateMetadata({
   }
 
   const pageUrl = `${siteUrl}/blog/${post.slug}`;
+  const publishedTime = toIsoDate(post.date);
 
   return {
     title: post.title,
@@ -41,7 +49,7 @@ export async function generateMetadata({
       description: post.excerpt,
       url: pageUrl,
       type: "article",
-      publishedTime: post.date,
+      publishedTime,
       authors: [post.author],
       images: [
         {
@@ -56,6 +64,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
+      images: [post.imageUrl],
     },
   };
 }
@@ -72,7 +81,8 @@ function generateJsonLd(post: (typeof blogPosts)[0]) {
     headline: post.title,
     description: post.excerpt,
     image: post.imageUrl,
-    datePublished: post.date,
+    datePublished: toIsoDate(post.date),
+    dateModified: toIsoDate(post.date),
     author: {
       "@type": "Person",
       name: post.author,
