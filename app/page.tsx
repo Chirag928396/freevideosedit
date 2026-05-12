@@ -9,6 +9,9 @@ import {
   BadgeCheck,
   Clock,
   Gauge,
+  Image as ImageIcon,
+  Music,
+  Smartphone,
 } from "lucide-react";
 import Link from "next/link";
 import Footer from "@/components/Footer";
@@ -238,6 +241,51 @@ export default function Home() {
               </p>
             </div>
           </Link>
+
+          <Link href="/video-to-mp3" className="group">
+            <div className="bg-white dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800/50 rounded-xl p-8 hover:border-gray-400 dark:hover:border-white/50 transition-all duration-300 hover:shadow-lg h-full">
+              <div className="w-12 h-12 bg-gradient-to-br from-sky-500 to-cyan-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Music className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                Video to MP3
+              </h3>
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
+                Extract audio from videos for podcasts, interviews, voice
+                notes, lessons, and quick sharing.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/video-to-gif" className="group">
+            <div className="bg-white dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800/50 rounded-xl p-8 hover:border-gray-400 dark:hover:border-white/50 transition-all duration-300 hover:shadow-lg h-full">
+              <div className="w-12 h-12 bg-gradient-to-br from-fuchsia-500 to-rose-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <ImageIcon className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                Video to GIF
+              </h3>
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
+                Turn short video clips into animated GIFs for messages,
+                tutorials, reactions, and product previews.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/social-media-video" className="group">
+            <div className="bg-white dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800/50 rounded-xl p-8 hover:border-gray-400 dark:hover:border-white/50 transition-all duration-300 hover:shadow-lg h-full">
+              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-lime-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Smartphone className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                Social Media Video
+              </h3>
+              <p className="text-gray-600 dark:text-zinc-400 text-sm">
+                Compress clips for Instagram, TikTok, YouTube Shorts,
+                WhatsApp, Discord, email, and reviews.
+              </p>
+            </div>
+          </Link>
         </div>
 
 
@@ -373,6 +421,8 @@ export default function Home() {
               ["Join several phone clips", "Combine Videos", "One MP4 file"],
               ["Send through email", "Compress Video", "MP4 under the limit"],
               ["Extract audio", "Convert Format", "MP3 audio"],
+              ["Make a short loop", "Video to GIF", "Animated GIF"],
+              ["Post on social apps", "Social Media Video", "Smaller MP4"],
               ["Protect a preview", "Add Watermark", "Branded MP4"],
             ].map(([task, tool, output]) => (
               <div

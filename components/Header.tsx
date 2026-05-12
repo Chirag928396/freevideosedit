@@ -18,6 +18,9 @@ import {
   Minimize2,
   FileVideo,
   ChevronDown,
+  Music,
+  Image as ImageIcon,
+  Smartphone,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useTheme } from "@/components/ThemeProvider";
@@ -77,6 +80,24 @@ const navTools = [
     activeBg: "bg-pink-50 dark:bg-pink-900/20",
     activeBorder: "border-pink-200 dark:border-pink-700/50",
     badge: null,
+  },
+];
+
+const popularPages = [
+  {
+    href: "/video-to-mp3",
+    label: "Video to MP3",
+    icon: Music,
+  },
+  {
+    href: "/video-to-gif",
+    label: "Video to GIF",
+    icon: ImageIcon,
+  },
+  {
+    href: "/social-media-video",
+    label: "Social Media Video",
+    icon: Smartphone,
   },
 ];
 
@@ -221,6 +242,26 @@ export default function Header() {
                 {/* Pages section */}
                 <div className="p-3">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500 px-2 mb-2">
+                    Popular
+                  </p>
+                  <div className="space-y-0.5 border-b border-gray-100 pb-3 dark:border-zinc-800">
+                    {popularPages.map((page) => {
+                      const Icon = page.icon;
+                      return (
+                        <Link
+                          key={page.href}
+                          href={page.href}
+                          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-gray-900 dark:hover:text-white transition-all"
+                        >
+                          <span className="w-7 h-7 rounded-lg bg-gray-100 dark:bg-zinc-800 flex items-center justify-center flex-shrink-0">
+                            <Icon className="w-3.5 h-3.5 text-gray-600 dark:text-zinc-400" />
+                          </span>
+                          {page.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                  <p className="mt-3 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500 px-2 mb-2">
                     Pages
                   </p>
                   <div className="space-y-0.5">

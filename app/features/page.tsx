@@ -8,9 +8,12 @@ import {
   Gauge,
   Layers,
   Lock,
+  Image as ImageIcon,
+  Music,
   Scissors,
   Sparkles,
   Stamp,
+  Smartphone,
 } from "lucide-react";
 
 const siteUrl = "https://freevidosedit.com";
@@ -60,6 +63,27 @@ const features = [
       "Convert common video files to MP4, MOV, AVI, WebM, MKV, MP3, or GIF for sharing and publishing.",
     icon: FileVideo,
     href: "/video-converter",
+  },
+  {
+    title: "Video to MP3 audio",
+    description:
+      "Extract voice, podcast, lesson, interview, or music audio from video files as MP3.",
+    icon: Music,
+    href: "/video-to-mp3",
+  },
+  {
+    title: "Video to GIF loops",
+    description:
+      "Create animated GIFs from short clips for tutorials, chats, reactions, and product previews.",
+    icon: ImageIcon,
+    href: "/video-to-gif",
+  },
+  {
+    title: "Social sharing optimization",
+    description:
+      "Compress clips before posting or sending through Instagram, TikTok, WhatsApp, Discord, and email.",
+    icon: Smartphone,
+    href: "/social-media-video",
   },
   {
     title: "Text and logo watermarking",
@@ -165,7 +189,8 @@ export default function FeaturesPage() {
                 ["Instagram, YouTube, WhatsApp", "MP4", "Convert or Compress"],
                 ["Website background video", "WebM or MP4", "Convert"],
                 ["Email attachment", "MP4 under 25 MB", "Trim then Compress"],
-                ["Audio-only sharing", "MP3", "Convert"],
+                ["Audio-only sharing", "MP3", "Video to MP3"],
+                ["Short loop for chat or docs", "GIF", "Video to GIF"],
                 ["Client preview with branding", "MP4 with watermark", "Watermark"],
               ].map(([goal, format, tool]) => (
                 <div
