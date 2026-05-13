@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/privacy`;
 
 export const metadata: Metadata = {
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
               Your Privacy Matters
             </h2>
             <p className="leading-relaxed">
-              At freevidosedit, we take your privacy seriously. Unlike many
+              At freevideosedit, we take your privacy seriously. Unlike many
               online video editors, we process all your videos directly in your
               browser using WebAssembly technology. This means your videos never
               leave your device and are never uploaded to our servers.
@@ -156,10 +156,10 @@ export default function PrivacyPage() {
               If you have any questions about this Privacy Policy, please
               contact us at:{" "}
               <a
-                href="mailto:support@freevidosedit.com"
+                href="mailto:support@freevideosedit.com"
                 className="text-blue-400 hover:text-blue-300"
               >
-                support@freevidosedit.com
+                support@freevideosedit.com
               </a>
             </p>
           </section>

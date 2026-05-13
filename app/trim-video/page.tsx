@@ -20,7 +20,7 @@ import BenefitsSection from "@/components/BenefitsSection";
 import Header from "@/components/Header";
 import AdSpace from "@/components/AdSpace";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/trim-video`;
 
 export const metadata: Metadata = {

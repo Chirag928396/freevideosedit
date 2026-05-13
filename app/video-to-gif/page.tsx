@@ -3,7 +3,7 @@ import VideoUseCasePage from "@/components/VideoUseCasePage";
 import { Metadata } from "next";
 import { BadgeCheck, Film, Image as ImageIcon, MessageSquare, Shield, Sparkles } from "lucide-react";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/video-to-gif`;
 
 export const metadata: Metadata = {

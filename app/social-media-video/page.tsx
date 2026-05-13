@@ -3,7 +3,7 @@ import VideoUseCasePage from "@/components/VideoUseCasePage";
 import { Metadata } from "next";
 import { Gauge, Instagram, PlaySquare, Shield, Smartphone, Zap } from "lucide-react";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/social-media-video`;
 
 export const metadata: Metadata = {

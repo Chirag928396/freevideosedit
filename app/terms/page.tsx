@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/terms`;
 
 export const metadata: Metadata = {
@@ -64,7 +64,7 @@ export default function TermsPage() {
               Acceptance of Terms
             </h2>
             <p className="leading-relaxed">
-              By accessing and using freevidosedit, you accept and agree to be
+              By accessing and using freevideosedit, you accept and agree to be
               bound by the terms and provisions of this agreement. If you do not
               agree to these terms, please do not use our service.
             </p>
@@ -115,7 +115,7 @@ export default function TermsPage() {
               Service Availability
             </h2>
             <p className="leading-relaxed">
-              We strive to keep freevidosedit available 24/7, but we do not
+              We strive to keep freevideosedit available 24/7, but we do not
               guarantee uninterrupted access. We may modify, suspend, or
               discontinue any part of the service at any time without notice.
             </p>
@@ -126,7 +126,7 @@ export default function TermsPage() {
               Limitation of Liability
             </h2>
             <p className="leading-relaxed">
-              freevidosedit is provided &quot;as is&quot; without warranties of
+              freevideosedit is provided &quot;as is&quot; without warranties of
               any kind. We are not liable for any damages resulting from your
               use of the service, including but not limited to data loss,
               service interruptions, or errors in processing.
@@ -183,10 +183,10 @@ export default function TermsPage() {
             <p className="leading-relaxed">
               If you have questions about these Terms of Service, contact us at:{" "}
               <a
-                href="mailto:support@freevidosedit.com"
+                href="mailto:support@freevideosedit.com"
                 className="text-blue-400 hover:text-blue-300"
               >
-                support@freevidosedit.com
+                support@freevideosedit.com
               </a>
             </p>
           </section>

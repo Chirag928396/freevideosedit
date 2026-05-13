@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import { Video } from "lucide-react";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/about`;
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Learn about FreeVideosEdit's mission to make professional video editing accessible to everyone. Free, browser-based video tools with no downloads required.",
   keywords: [
-    "about freevidosedit",
+    "about freevideosedit",
     "free video editor company",
     "online video tools",
     "browser video editing",
@@ -99,7 +99,7 @@ export default function AboutPage() {
                   Our Mission
                 </h2>
                 <p className="text-gray-600 dark:text-zinc-400 leading-relaxed text-lg">
-                  At freevidosedit, we believe that high-quality video editing
+                  At freevideosedit, we believe that high-quality video editing
                   shouldn&apos;t require expensive software or powerful
                   computers. Our mission is to democratize video creation by
                   providing professional-grade tools that run directly in your
@@ -116,7 +116,7 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-gray-600 dark:text-zinc-400 leading-relaxed">
               <p>
-                Founded in 2024, freevidosedit started with a simple
+                Founded in 2024, freevideosedit started with a simple
                 frustration: why is it so hard to just trim a video or add a
                 watermark without downloading 500MB of software?
               </p>

@@ -21,7 +21,7 @@ import BenefitsSection from "@/components/BenefitsSection";
 import Header from "@/components/Header";
 import AdSpace from "@/components/AdSpace";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/video-watermark`;
 
 export const metadata: Metadata = {

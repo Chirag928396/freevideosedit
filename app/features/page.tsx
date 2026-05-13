@@ -16,7 +16,7 @@ import {
   Smartphone,
 } from "lucide-react";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/features`;
 
 export const metadata: Metadata = {

@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { blogPosts } from "@/lib/blogData";
 import { notFound } from "next/navigation";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 
 function toIsoDate(date: string) {
   const parsed = new Date(date);

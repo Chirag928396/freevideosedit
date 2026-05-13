@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     description:
       "Edit videos online for free. Trim, compress, convert, and add watermarks directly in your browser.",
     images: ["/twitter-image"],
-    creator: "@freevidosedit",
+    creator: "@freevideosedit",
   },
   alternates: {
     canonical: siteUrl,

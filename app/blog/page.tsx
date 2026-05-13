@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { blogPosts } from "@/lib/blogData";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/blog`;
 
 export const metadata: Metadata = {

@@ -18,7 +18,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Metadata } from "next";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 
 export const metadata: Metadata = {
   title:
@@ -100,8 +100,8 @@ const jsonLd = {
         height: 512,
       },
       sameAs: [
-        "https://twitter.com/freevidosedit",
-        "https://facebook.com/freevidosedit",
+        "https://twitter.com/freevideosedit",
+        "https://facebook.com/freevideosedit",
       ],
     },
     {

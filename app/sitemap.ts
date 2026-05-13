@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blogData";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString();

@@ -50,7 +50,7 @@ export const blogPosts: BlogPost[] = [
       </ol>
     `,
     date: "Jan 15, 2024",
-    author: "freevidosedit Team",
+    author: "freevideosedit Team",
     category: "Tutorial",
     imageUrl: "/blog-trim.svg",
     toolLink: "/trim-video",
@@ -76,7 +76,7 @@ export const blogPosts: BlogPost[] = [
       <p>You can use different types of watermarks depending on your needs:</p>
       <ul>
         <li><strong>Logo:</strong> Great for businesses and brands. Place it in a corner with reduced opacity.</li>
-        <li><strong>Text:</strong> Ideal for creators. Use your social media handle (e.g., @freevidosedit).</li>
+        <li><strong>Text:</strong> Ideal for creators. Use your social media handle (e.g., @freevideosedit).</li>
         <li><strong>Tiled:</strong> A pattern repeated across the screen for maximum protection (often used for stock footage previews).</li>
       </ul>
 
@@ -161,7 +161,7 @@ export const blogPosts: BlogPost[] = [
       <p>Need to switch formats? Our converter supports all these major formats and processes them locally in your browser.</p>
     `,
     date: "Jan 05, 2024",
-    author: "freevidosedit Team",
+    author: "freevideosedit Team",
     category: "Technical",
     imageUrl: "/blog-formats.svg",
     toolLink: "/video-converter",
@@ -199,7 +199,7 @@ export const blogPosts: BlogPost[] = [
       <p>If your video does not match these specs, use our free video converter or compressor to adjust the format and file size before uploading.</p>
     `,
     date: "Feb 20, 2024",
-    author: "freevidosedit Team",
+    author: "freevideosedit Team",
     category: "Guide",
     imageUrl: "/blog-social.svg",
     toolLink: "/video-converter",
@@ -237,7 +237,7 @@ export const blogPosts: BlogPost[] = [
       </ul>
     `,
     date: "Mar 05, 2024",
-    author: "freevidosedit Team",
+    author: "freevideosedit Team",
     category: "Tutorial",
     imageUrl: "/blog-email.svg",
     toolLink: "/video-compress",
@@ -271,7 +271,7 @@ export const blogPosts: BlogPost[] = [
       <p>For everyday tasks like cutting a clip for social media, compressing a video for email, or adding a watermark to protect your content, browser-based tools are faster and more convenient. Save the desktop software for complex, multi-layer projects.</p>
     `,
     date: "Mar 12, 2024",
-    author: "freevidosedit Team",
+    author: "freevideosedit Team",
     category: "Comparison",
     imageUrl: "/blog-compare.svg",
     toolLink: "/trim-video",
@@ -311,7 +311,7 @@ export const blogPosts: BlogPost[] = [
       <p>Share them in Slack or Teams for fun reactions, embed them in blog posts or emails, post them on Twitter or Reddit, or use them in presentations to add a dynamic touch without embedding a full video player.</p>
     `,
     date: "Mar 15, 2024",
-    author: "freevidosedit Team",
+    author: "freevideosedit Team",
     category: "Tutorial",
     imageUrl: "/blog-gif.svg",
     toolLink: "/video-converter",

@@ -21,7 +21,7 @@ import FAQSection from "@/components/FAQSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import AdSpace from "@/components/AdSpace";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/video-compress`;
 
 export const metadata: Metadata = {

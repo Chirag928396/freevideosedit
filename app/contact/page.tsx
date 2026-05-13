@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/contact`;
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Have questions or feedback about FreeVideosEdit? Contact our team. We're here to help with any issues, suggestions, or partnership inquiries.",
   keywords: [
-    "contact freevidosedit",
+    "contact freevideosedit",
     "video editor support",
     "help video editing",
     "feedback",

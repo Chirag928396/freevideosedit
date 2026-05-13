@@ -131,7 +131,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-200 dark:border-zinc-800/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 dark:text-zinc-500 text-sm">
-            © 2026 freevidosedit. All rights reserved.
+            © 2026 freevideosedit. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link

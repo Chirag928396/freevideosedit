@@ -3,7 +3,7 @@ import VideoUseCasePage from "@/components/VideoUseCasePage";
 import { Metadata } from "next";
 import { Clock, Download, FileAudio, Music, Shield, Zap } from "lucide-react";
 
-const siteUrl = "https://freevidosedit.com";
+const siteUrl = "https://freevideosedit.com";
 const pageUrl = `${siteUrl}/video-to-mp3`;
 
 export const metadata: Metadata = {
