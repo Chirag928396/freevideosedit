@@ -8,6 +8,7 @@ import {
   Droplet,
   FileText,
   FileVideo,
+  Film,
   Gauge,
   Image as ImageIcon,
   Info,
@@ -57,17 +58,6 @@ const navItems = [
     badge: null,
   },
   {
-    href: "/video-watermark",
-    label: "Watermark",
-    icon: Droplet,
-    gradient: "from-emerald-500 to-teal-500",
-    hoverBg: "hover:bg-emerald-50 dark:hover:bg-emerald-900/20",
-    activeText: "text-emerald-600 dark:text-emerald-400",
-    activeBg: "bg-emerald-50 dark:bg-emerald-900/20",
-    activeBorder: "border-emerald-200 dark:border-emerald-700/50",
-    badge: null,
-  },
-  {
     href: "/video-compress",
     label: "Compress",
     icon: Minimize2,
@@ -101,6 +91,133 @@ const navItems = [
     badge: null,
   },
   {
+    href: "/video-watermark",
+    label: "Watermark",
+    icon: Droplet,
+    gradient: "from-emerald-500 to-teal-500",
+    hoverBg: "hover:bg-emerald-50 dark:hover:bg-emerald-900/20",
+    activeText: "text-emerald-600 dark:text-emerald-400",
+    activeBg: "bg-emerald-50 dark:bg-emerald-900/20",
+    activeBorder: "border-emerald-200 dark:border-emerald-700/50",
+    badge: null,
+  },
+];
+
+const megaMenuItems = [
+  {
+    href: "/video-to-gif",
+    label: "Video to GIF",
+    description: "Turn clips into animated GIFs",
+    icon: Film,
+    gradient: "from-fuchsia-500 to-rose-600",
+    hoverBg: "hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20",
+    activeText: "text-fuchsia-600 dark:text-fuchsia-400",
+    activeBg: "bg-fuchsia-50 dark:bg-fuchsia-900/20",
+    activeBorder: "border-fuchsia-200 dark:border-fuchsia-700/50",
+  },
+  {
+    href: "/social-media-video",
+    label: "Social Video",
+    description: "Optimise for TikTok, Instagram & more",
+    icon: Smartphone,
+    gradient: "from-emerald-500 to-lime-600",
+    hoverBg: "hover:bg-emerald-50 dark:hover:bg-emerald-900/20",
+    activeText: "text-emerald-600 dark:text-emerald-400",
+    activeBg: "bg-emerald-50 dark:bg-emerald-900/20",
+    activeBorder: "border-emerald-200 dark:border-emerald-700/50",
+  },
+  {
+    href: "/video-speed",
+    label: "Change Speed",
+    description: "Slow motion or fast-forward",
+    icon: Gauge,
+    gradient: "from-cyan-500 to-blue-600",
+    hoverBg: "hover:bg-cyan-50 dark:hover:bg-cyan-900/20",
+    activeText: "text-cyan-600 dark:text-cyan-400",
+    activeBg: "bg-cyan-50 dark:bg-cyan-900/20",
+    activeBorder: "border-cyan-200 dark:border-cyan-700/50",
+  },
+  {
+    href: "/video-rotate",
+    label: "Rotate & Flip",
+    description: "Fix orientation or mirror",
+    icon: RotateCw,
+    gradient: "from-indigo-500 to-violet-600",
+    hoverBg: "hover:bg-indigo-50 dark:hover:bg-indigo-900/20",
+    activeText: "text-indigo-600 dark:text-indigo-400",
+    activeBg: "bg-indigo-50 dark:bg-indigo-900/20",
+    activeBorder: "border-indigo-200 dark:border-indigo-700/50",
+  },
+  {
+    href: "/video-crop",
+    label: "Crop Video",
+    description: "16:9, 9:16, 1:1 or custom",
+    icon: Crop,
+    gradient: "from-amber-500 to-orange-600",
+    hoverBg: "hover:bg-amber-50 dark:hover:bg-amber-900/20",
+    activeText: "text-amber-600 dark:text-amber-400",
+    activeBg: "bg-amber-50 dark:bg-amber-900/20",
+    activeBorder: "border-amber-200 dark:border-amber-700/50",
+  },
+  {
+    href: "/video-mute",
+    label: "Remove Audio",
+    description: "Export a silent MP4",
+    icon: VolumeX,
+    gradient: "from-slate-600 to-zinc-800",
+    hoverBg: "hover:bg-slate-50 dark:hover:bg-slate-900/20",
+    activeText: "text-slate-700 dark:text-slate-300",
+    activeBg: "bg-slate-50 dark:bg-slate-900/20",
+    activeBorder: "border-slate-200 dark:border-slate-700/50",
+  },
+  {
+    href: "/video-volume",
+    label: "Volume",
+    description: "Boost or reduce audio level",
+    icon: Volume2,
+    gradient: "from-sky-500 to-blue-600",
+    hoverBg: "hover:bg-sky-50 dark:hover:bg-sky-900/20",
+    activeText: "text-sky-600 dark:text-sky-400",
+    activeBg: "bg-sky-50 dark:bg-sky-900/20",
+    activeBorder: "border-sky-200 dark:border-sky-700/50",
+  },
+  {
+    href: "/video-thumbnail",
+    label: "Thumbnail",
+    description: "Save any frame as PNG or JPG",
+    icon: ImageIcon,
+    gradient: "from-rose-500 to-pink-600",
+    hoverBg: "hover:bg-rose-50 dark:hover:bg-rose-900/20",
+    activeText: "text-rose-600 dark:text-rose-400",
+    activeBg: "bg-rose-50 dark:bg-rose-900/20",
+    activeBorder: "border-rose-200 dark:border-rose-700/50",
+  },
+  {
+    href: "/video-reverse",
+    label: "Reverse",
+    description: "Play footage backwards",
+    icon: Rewind,
+    gradient: "from-fuchsia-600 to-purple-800",
+    hoverBg: "hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20",
+    activeText: "text-fuchsia-600 dark:text-fuchsia-400",
+    activeBg: "bg-fuchsia-50 dark:bg-fuchsia-900/20",
+    activeBorder: "border-fuchsia-200 dark:border-fuchsia-700/50",
+  },
+  {
+    href: "/video-loop",
+    label: "Loop Video",
+    description: "Repeat clip 2–10 times",
+    icon: Repeat,
+    gradient: "from-lime-500 to-emerald-700",
+    hoverBg: "hover:bg-lime-50 dark:hover:bg-lime-900/20",
+    activeText: "text-lime-700 dark:text-lime-400",
+    activeBg: "bg-lime-50 dark:bg-lime-900/20",
+    activeBorder: "border-lime-200 dark:border-lime-700/50",
+  },
+];
+
+const secondaryItems = [
+  {
     href: "/features",
     label: "Features",
     icon: Sparkles,
@@ -111,122 +228,6 @@ const navItems = [
     activeBorder: "border-amber-200 dark:border-amber-700/50",
     badge: null,
   },
-];
-
-const moreToolItems = [
-  {
-    href: "/video-speed",
-    label: "Change Speed",
-    icon: Gauge,
-    gradient: "from-cyan-500 to-blue-600",
-    hoverBg: "hover:bg-cyan-50 dark:hover:bg-cyan-900/20",
-    activeText: "text-cyan-600 dark:text-cyan-400",
-    activeBg: "bg-cyan-50 dark:bg-cyan-900/20",
-    activeBorder: "border-cyan-200 dark:border-cyan-700/50",
-    badge: null,
-  },
-  {
-    href: "/video-rotate",
-    label: "Rotate & Flip",
-    icon: RotateCw,
-    gradient: "from-indigo-500 to-violet-600",
-    hoverBg: "hover:bg-indigo-50 dark:hover:bg-indigo-900/20",
-    activeText: "text-indigo-600 dark:text-indigo-400",
-    activeBg: "bg-indigo-50 dark:bg-indigo-900/20",
-    activeBorder: "border-indigo-200 dark:border-indigo-700/50",
-    badge: null,
-  },
-  {
-    href: "/video-crop",
-    label: "Crop Video",
-    icon: Crop,
-    gradient: "from-amber-500 to-orange-600",
-    hoverBg: "hover:bg-amber-50 dark:hover:bg-amber-900/20",
-    activeText: "text-amber-600 dark:text-amber-400",
-    activeBg: "bg-amber-50 dark:bg-amber-900/20",
-    activeBorder: "border-amber-200 dark:border-amber-700/50",
-    badge: null,
-  },
-  {
-    href: "/video-mute",
-    label: "Remove Audio",
-    icon: VolumeX,
-    gradient: "from-slate-600 to-zinc-800",
-    hoverBg: "hover:bg-slate-50 dark:hover:bg-slate-900/20",
-    activeText: "text-slate-700 dark:text-slate-300",
-    activeBg: "bg-slate-50 dark:bg-slate-900/20",
-    activeBorder: "border-slate-200 dark:border-slate-700/50",
-    badge: null,
-  },
-  {
-    href: "/video-volume",
-    label: "Volume",
-    icon: Volume2,
-    gradient: "from-sky-500 to-blue-600",
-    hoverBg: "hover:bg-sky-50 dark:hover:bg-sky-900/20",
-    activeText: "text-sky-600 dark:text-sky-400",
-    activeBg: "bg-sky-50 dark:bg-sky-900/20",
-    activeBorder: "border-sky-200 dark:border-sky-700/50",
-    badge: null,
-  },
-  {
-    href: "/video-thumbnail",
-    label: "Thumbnail",
-    icon: ImageIcon,
-    gradient: "from-rose-500 to-pink-600",
-    hoverBg: "hover:bg-rose-50 dark:hover:bg-rose-900/20",
-    activeText: "text-rose-600 dark:text-rose-400",
-    activeBg: "bg-rose-50 dark:bg-rose-900/20",
-    activeBorder: "border-rose-200 dark:border-rose-700/50",
-    badge: null,
-  },
-  {
-    href: "/video-reverse",
-    label: "Reverse",
-    icon: Rewind,
-    gradient: "from-fuchsia-600 to-purple-800",
-    hoverBg: "hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20",
-    activeText: "text-fuchsia-600 dark:text-fuchsia-400",
-    activeBg: "bg-fuchsia-50 dark:bg-fuchsia-900/20",
-    activeBorder: "border-fuchsia-200 dark:border-fuchsia-700/50",
-    badge: null,
-  },
-  {
-    href: "/video-loop",
-    label: "Loop Video",
-    icon: Repeat,
-    gradient: "from-lime-500 to-emerald-700",
-    hoverBg: "hover:bg-lime-50 dark:hover:bg-lime-900/20",
-    activeText: "text-lime-700 dark:text-lime-400",
-    activeBg: "bg-lime-50 dark:bg-lime-900/20",
-    activeBorder: "border-lime-200 dark:border-lime-700/50",
-    badge: null,
-  },
-  {
-    href: "/video-to-gif",
-    label: "Video to GIF",
-    icon: ImageIcon,
-    gradient: "from-fuchsia-500 to-rose-600",
-    hoverBg: "hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20",
-    activeText: "text-fuchsia-600 dark:text-fuchsia-400",
-    activeBg: "bg-fuchsia-50 dark:bg-fuchsia-900/20",
-    activeBorder: "border-fuchsia-200 dark:border-fuchsia-700/50",
-    badge: null,
-  },
-  {
-    href: "/social-media-video",
-    label: "Social Video",
-    icon: Smartphone,
-    gradient: "from-emerald-500 to-lime-600",
-    hoverBg: "hover:bg-emerald-50 dark:hover:bg-emerald-900/20",
-    activeText: "text-emerald-600 dark:text-emerald-400",
-    activeBg: "bg-emerald-50 dark:bg-emerald-900/20",
-    activeBorder: "border-emerald-200 dark:border-emerald-700/50",
-    badge: null,
-  },
-];
-
-const secondaryItems = [
   {
     href: "/blog",
     label: "Blog",
@@ -292,7 +293,7 @@ export default function Header() {
 
   const isActive = (path: string) =>
     path === "/" ? pathname === "/" : pathname === path;
-  const hasActiveMoreItem = [...moreToolItems, ...secondaryItems].some((item) =>
+  const hasActiveMoreItem = [...megaMenuItems, ...secondaryItems].some((item) =>
     isActive(item.href),
   );
 
@@ -393,42 +394,12 @@ export default function Header() {
             </button>
 
             {isMenuOpen && (
-              <div className="absolute right-0 top-full mt-2 w-[min(92vw,360px)] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-900">
-                <div className="grid gap-1 p-3">
-                  <p className="px-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
-                    More Tools
+              <div className="absolute right-0 top-full z-50 mt-2 max-h-[min(80vh,720px)] w-[min(96vw,780px)] overflow-y-auto overflow-x-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-900">
+                <div className="border-b border-gray-100 p-3 dark:border-zinc-800 lg:hidden">
+                  <p className="px-2 pb-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
+                    Main tools
                   </p>
-                  <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-1">
-                  {moreToolItems.map((item) => {
-                    const Icon = item.icon;
-                    const active = isActive(item.href);
-                    return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
-                          active
-                            ? `${item.activeBg} ${item.activeText}`
-                            : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
-                        }`}
-                      >
-                        <span
-                          className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm`}
-                        >
-                          <Icon className="h-3.5 w-3.5 text-white" />
-                        </span>
-                        {item.label}
-                      </Link>
-                    );
-                  })}
-                  </div>
-                </div>
-
-                <div className="grid gap-1 border-t border-gray-100 p-3 dark:border-zinc-800 lg:hidden">
-                  <p className="px-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
-                    Main Tools
-                  </p>
-                  <div className="grid gap-1 sm:grid-cols-2">
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                     {navItems.map((item) => {
                       const Icon = item.icon;
                       const active = isActive(item.href);
@@ -436,48 +407,85 @@ export default function Header() {
                         <Link
                           key={item.href}
                           href={item.href}
-                          className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
+                          className={`flex items-center gap-2 rounded-xl px-2.5 py-2 text-xs font-semibold transition-all ${
                             active
-                              ? `${item.activeBg} ${item.activeText}`
-                              : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+                              ? `${item.activeBg} ${item.activeText} border ${item.activeBorder}`
+                              : "border border-transparent text-gray-700 hover:bg-gray-50 dark:text-zinc-300 dark:hover:bg-zinc-800"
                           }`}
                         >
                           <span
-                            className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm`}
+                            className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm`}
                           >
-                            <Icon className="h-3.5 w-3.5 text-white" />
+                            <Icon className="h-3 w-3 text-white" strokeWidth={2.5} />
                           </span>
-                          {item.label}
+                          <span className="min-w-0 truncate">{item.label}</span>
                         </Link>
                       );
                     })}
                   </div>
                 </div>
 
-                <div className="grid gap-1 border-t border-gray-100 p-3 dark:border-zinc-800 lg:border-t-0">
-                  <p className="px-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
-                    Pages
+                <div className="p-4 sm:p-5">
+                  <p className="px-1 pb-3 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
+                    All video tools
                   </p>
-                  {secondaryItems.map((item) => {
-                    const Icon = item.icon;
+                  <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+                    {megaMenuItems.map((item) => {
+                      const Icon = item.icon;
+                      const active = isActive(item.href);
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`group flex gap-3 rounded-xl border p-3 text-left transition-all ${
+                            active
+                              ? `${item.activeBg} ${item.activeText} ${item.activeBorder}`
+                              : "border-gray-100 bg-gray-50/50 hover:border-gray-200 hover:bg-gray-50 dark:border-zinc-800 dark:bg-zinc-800/40 dark:hover:border-zinc-700 dark:hover:bg-zinc-800"
+                          }`}
+                        >
+                          <span
+                            className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm transition-transform group-hover:scale-105`}
+                          >
+                            <Icon className="h-4 w-4 text-white" strokeWidth={2.25} />
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span className="block text-sm font-bold text-gray-900 dark:text-white">
+                              {item.label}
+                            </span>
+                            <span className="mt-0.5 block text-xs leading-snug text-gray-500 dark:text-zinc-400">
+                              {item.description}
+                            </span>
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-x-1 gap-y-2 border-t border-gray-100 px-4 py-3 text-sm dark:border-zinc-800 sm:justify-start">
+                  {secondaryItems.map((item, index) => {
                     const active = isActive(item.href);
                     return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
-                          active
-                            ? `${item.activeBg} ${item.activeText}`
-                            : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
-                        }`}
-                      >
-                        <span
-                          className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} shadow-sm`}
+                      <span key={item.href} className="inline-flex items-center">
+                        {index > 0 && (
+                          <span
+                            className="mx-2 hidden text-gray-300 sm:inline dark:text-zinc-600"
+                            aria-hidden
+                          >
+                            ·
+                          </span>
+                        )}
+                        <Link
+                          href={item.href}
+                          className={`font-medium transition-colors hover:underline ${
+                            active
+                              ? item.activeText
+                              : "text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-white"
+                          }`}
                         >
-                          <Icon className="h-3.5 w-3.5 text-white" />
-                        </span>
-                        {item.label}
-                      </Link>
+                          {item.label}
+                        </Link>
+                      </span>
                     );
                   })}
                 </div>
