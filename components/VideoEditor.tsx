@@ -1,9 +1,16 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Upload, Scissors, Plus, Trash2, CheckCircle2, Film, Layers } from "lucide-react";
+import { Upload, Scissors, Plus, Trash2, CheckCircle2 } from "lucide-react";
 import VideoPlayer from "./VideoPlayer";
 import { useFFmpeg } from "@/hooks/useFFmpeg";
+import { appendProcessingHistory } from "@/lib/processingHistory";
+import {
+  BeforeAfterPreview,
+  ProcessingHistoryPanel,
+  VideoDropZone,
+  VideoMetadataPanel,
+} from "./VideoToolUi";
 
 interface CutRange {
   id: number;
@@ -26,7 +33,7 @@ export default function VideoEditor() {
   const [selectionPreviewEnd, setSelectionPreviewEnd] = useState<number | null>(null);
   const [pendingSelectionStart, setPendingSelectionStart] = useState<number | null>(null);
   const [editingValues, setEditingValues] = useState<Record<number, { start: string; end: string }>>({});
-  const [isDragging, setIsDragging] = useState(false);
+  const [resultUrl, setResultUrl] = useState<string | null>(null);
   
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -96,8 +103,15 @@ export default function VideoEditor() {
 
   const handleFileUpload = (file: File) => {
     if (file && file.type.startsWith("video/")) {
+      setResultUrl((prev) => {
+        if (prev) URL.revokeObjectURL(prev);
+        return null;
+      });
       setVideoFile(file);
-      setVideoUrl(URL.createObjectURL(file));
+      setVideoUrl((prev) => {
+        if (prev) URL.revokeObjectURL(prev);
+        return URL.createObjectURL(file);
+      });
       setCutRanges([]);
       setEditingValues({});
     }
@@ -105,23 +119,6 @@ export default function VideoEditor() {
 
   const onFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) handleFileUpload(file);
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files?.[0];
     if (file) handleFileUpload(file);
   };
 
@@ -198,12 +195,18 @@ export default function VideoEditor() {
         outputBlob = await removePortions(videoFile, cutRanges, duration);
       }
 
-      const url = URL.createObjectURL(outputBlob);
+      const outputUrl = URL.createObjectURL(outputBlob);
+      setResultUrl(outputUrl);
+      appendProcessingHistory({
+        tool: trimMode === "trim" ? "Trim" : "Cut",
+        fileName: `${trimMode === "trim" ? "trimmed" : "cut"}-${videoFile.name}`,
+        sizeBytes: outputBlob.size,
+      });
+
       const a = document.createElement("a");
-      a.href = url;
+      a.href = outputUrl;
       a.download = `${trimMode === "trim" ? "trimmed" : "cut"}-${videoFile.name}`;
       a.click();
-      URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Export error:", error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error";
@@ -212,27 +215,20 @@ export default function VideoEditor() {
   };
 
   return (
+    <>
     <div className="bg-white dark:bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-zinc-800/50 p-6 shadow-sm dark:shadow-2xl">
       {!videoUrl ? (
+        <VideoDropZone onVideoFile={handleFileUpload}>
         <label
           htmlFor="video-upload"
           className="cursor-pointer block"
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
         >
-          <div
-            className={`border-2 border-dashed rounded-2xl p-16 transition-all duration-300 text-center group ${
-              isDragging
-                ? "border-purple-500 bg-purple-50/50 dark:bg-purple-900/20 scale-[1.02]"
-                : "border-gray-200 dark:border-zinc-700/50 hover:border-purple-400 dark:hover:border-purple-500/50 hover:bg-purple-50/20 dark:hover:bg-zinc-800/50"
-            }`}
-          >
+          <div className="border-2 border-dashed border-gray-200 dark:border-zinc-700/50 rounded-2xl p-16 hover:border-purple-400 dark:hover:border-purple-500/50 hover:bg-purple-50/20 dark:hover:bg-zinc-800/50 transition-all duration-300 text-center group">
             <div className="mx-auto mb-5 w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
               <Upload className="w-8 h-8 text-white" />
             </div>
             <p className="text-gray-800 dark:text-white font-bold mb-2 text-xl">
-              {isDragging ? "Drop video to upload" : "Drop your video here"}
+              Drop your video here
             </p>
             <p className="text-gray-500 dark:text-zinc-400 text-sm mb-5">
               or click to browse from your device
@@ -252,6 +248,7 @@ export default function VideoEditor() {
             onChange={onFileInputChange}
           />
         </label>
+        </VideoDropZone>
       ) : (
         <div className="space-y-5">
           {/* Mode Switcher */}
@@ -295,6 +292,14 @@ export default function VideoEditor() {
             onDurationChange={setDuration}
             onEnded={() => setIsPlaying(false)}
           />
+
+          {videoFile && (
+            <VideoMetadataPanel
+              file={videoFile}
+              videoRef={videoRef}
+              durationSeconds={duration}
+            />
+          )}
 
           {duration > 0 && (
             <>
@@ -555,6 +560,8 @@ export default function VideoEditor() {
                 </div>
               )}
 
+              <BeforeAfterPreview originalUrl={videoUrl} resultUrl={resultUrl} />
+
               {/* Buttons */}
               <div className="flex gap-3">
                 <label
@@ -596,5 +603,7 @@ export default function VideoEditor() {
         </div>
       )}
     </div>
+    <ProcessingHistoryPanel />
+    </>
   );
 }

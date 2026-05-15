@@ -13,6 +13,12 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useFFmpeg } from "@/hooks/useFFmpeg";
+import { appendProcessingHistory } from "@/lib/processingHistory";
+import { formatFileSize } from "@/lib/formatFileSize";
+import {
+  BeforeAfterPreview,
+  ProcessingHistoryPanel,
+} from "./VideoToolUi";
 
 interface VideoItem {
   id: string;
@@ -152,6 +158,11 @@ export default function VideoCombiner() {
       const blob = await combineVideos(videos.map((v) => v.file));
       const url = URL.createObjectURL(blob);
       setOutputUrl(url);
+      appendProcessingHistory({
+        tool: "Combine videos",
+        fileName: "combined-video.mp4",
+        sizeBytes: blob.size,
+      });
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Unknown error";
       setError(`Failed to combine videos: ${msg}`);
@@ -167,8 +178,10 @@ export default function VideoCombiner() {
   };
 
   const previewItem = previewId ? videos.find((v) => v.id === previewId) : null;
+  const firstUrl = videos[0]?.url ?? "";
 
   return (
+    <div className="space-y-4">
     <div className="bg-white dark:bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-zinc-800/50 p-6 shadow-sm dark:shadow-2xl space-y-5">
       {/* Drop zone */}
       <div
@@ -203,6 +216,16 @@ export default function VideoCombiner() {
           onChange={(e) => e.target.files && addFiles(e.target.files)}
         />
       </div>
+
+      {videos.length > 0 && (
+        <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm dark:border-zinc-700/50 dark:bg-zinc-900/40">
+          <p className="font-semibold text-gray-900 dark:text-white">Selection summary</p>
+          <p className="text-gray-600 dark:text-zinc-400">
+            {videos.length} clip{videos.length !== 1 ? "s" : ""} ·{" "}
+            {formatFileSize(videos.reduce((acc, v) => acc + v.file.size, 0))} total
+          </p>
+        </div>
+      )}
 
       {/* Video list */}
       {videos.length > 0 && (
@@ -399,6 +422,9 @@ export default function VideoCombiner() {
             <Layers className="w-4 h-4 text-violet-500" />
             Combined Video Ready
           </h3>
+          {firstUrl ? (
+            <BeforeAfterPreview originalUrl={firstUrl} resultUrl={outputUrl} />
+          ) : null}
           <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-zinc-700/50 bg-black">
             <video src={outputUrl} controls className="w-full max-h-80 object-contain" />
           </div>
@@ -411,6 +437,8 @@ export default function VideoCombiner() {
           </button>
         </div>
       )}
+    </div>
+    <ProcessingHistoryPanel />
     </div>
   );
 }

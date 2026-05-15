@@ -11,6 +11,13 @@ import {
 } from "lucide-react";
 import VideoPlayer from "./VideoPlayer";
 import { useFFmpeg } from "@/hooks/useFFmpeg";
+import { appendProcessingHistory } from "@/lib/processingHistory";
+import {
+  BeforeAfterPreview,
+  ProcessingHistoryPanel,
+  VideoDropZone,
+  VideoMetadataPanel,
+} from "./VideoToolUi";
 
 export default function VideoConverter() {
   const [videoFile, setVideoFile] = useState<File | null>(null);
@@ -19,6 +26,7 @@ export default function VideoConverter() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [resultUrl, setResultUrl] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const { loaded, isProcessing, progress, convertVideo } = useFFmpeg();
@@ -33,13 +41,22 @@ export default function VideoConverter() {
     }
   }, [isPlaying]);
 
+  const applyVideoFile = (file: File) => {
+    if (!file.type.startsWith("video/")) return;
+    setResultUrl((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return null;
+    });
+    setVideoFile(file);
+    setVideoUrl((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return URL.createObjectURL(file);
+    });
+  };
+
   const handleVideoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file && file.type.startsWith("video/")) {
-      setVideoFile(file);
-      const url = URL.createObjectURL(file);
-      setVideoUrl(url);
-    }
+    if (file) applyVideoFile(file);
   };
 
   const handleExport = async () => {
@@ -49,11 +66,39 @@ export default function VideoConverter() {
       const { blob, filename } = await convertVideo(videoFile, outputFormat);
 
       const url = URL.createObjectURL(blob);
+      const videoFormats = ["mp4", "webm", "avi", "mov", "mkv"];
+
+      if (videoFormats.includes(outputFormat)) {
+        setResultUrl((prev) => {
+          if (prev) URL.revokeObjectURL(prev);
+          return url;
+        });
+      } else if (outputFormat === "gif") {
+        setResultUrl((prev) => {
+          if (prev) URL.revokeObjectURL(prev);
+          return url;
+        });
+      } else {
+        setResultUrl((prev) => {
+          if (prev) URL.revokeObjectURL(prev);
+          return null;
+        });
+      }
+
+      appendProcessingHistory({
+        tool: "Convert",
+        fileName: filename,
+        sizeBytes: blob.size,
+      });
+
       const a = document.createElement("a");
       a.href = url;
       a.download = filename;
       a.click();
-      URL.revokeObjectURL(url);
+
+      if (!videoFormats.includes(outputFormat) && outputFormat !== "gif") {
+        setTimeout(() => URL.revokeObjectURL(url), 60_000);
+      }
     } catch (error) {
       console.error("Export error:", error);
       const errorMessage =
@@ -116,8 +161,10 @@ export default function VideoConverter() {
   ];
 
   return (
+    <div className="space-y-4">
     <div className="bg-white dark:bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-zinc-800/50 p-6 shadow-sm dark:shadow-2xl">
       {!videoUrl ? (
+        <VideoDropZone onVideoFile={applyVideoFile}>
         <label htmlFor="video-upload-convert" className="cursor-pointer block">
           <div className="border-2 border-dashed border-gray-200 dark:border-zinc-700/50 rounded-2xl p-16 hover:border-blue-400 dark:hover:border-white/40 hover:bg-blue-50/40 dark:hover:bg-zinc-800/30 transition-all duration-300 text-center group">
             <div className="mx-auto mb-5 w-16 h-16 bg-gradient-to-br from-orange-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
@@ -144,8 +191,15 @@ export default function VideoConverter() {
             onChange={handleVideoUpload}
           />
         </label>
+        </VideoDropZone>
       ) : (
         <div className="space-y-6">
+          <VideoMetadataPanel
+            file={videoFile!}
+            videoRef={videoRef}
+            durationSeconds={duration}
+          />
+
           {/* Video Preview */}
           <div className="bg-gray-50 dark:bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-zinc-800/50 p-6">
             <div className="flex justify-between items-center mb-4">
@@ -198,6 +252,12 @@ export default function VideoConverter() {
             </div>
           </div>
 
+          <BeforeAfterPreview
+            originalUrl={videoUrl}
+            resultUrl={resultUrl}
+            resultAsImage={outputFormat === "gif"}
+          />
+
           {/* Export Section */}
           <div className="bg-gray-50 dark:bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-200 dark:border-zinc-700/50">
             <div className="flex gap-3">
@@ -211,7 +271,10 @@ export default function VideoConverter() {
                   type="file"
                   accept="video/*"
                   className="hidden"
-                  onChange={handleVideoUpload}
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) applyVideoFile(f);
+                  }}
                 />
               </label>
               <button
@@ -235,6 +298,8 @@ export default function VideoConverter() {
           </div>
         </div>
       )}
+    </div>
+    <ProcessingHistoryPanel />
     </div>
   );
 }

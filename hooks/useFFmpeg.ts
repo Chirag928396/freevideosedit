@@ -9,6 +9,30 @@ interface CutRange {
   end: number;
 }
 
+/** Build chained atempo filters (each atempo must be between 0.5 and 2.0). */
+function buildAtempoChain(speed: number): string {
+  const filters: string[] = [];
+  let s = speed;
+  while (s > 2 + 1e-6) {
+    filters.push("atempo=2");
+    s /= 2;
+  }
+  while (s < 0.5 - 1e-6) {
+    filters.push("atempo=0.5");
+    s /= 0.5;
+  }
+  s = Math.min(2, Math.max(0.5, s));
+  filters.push(`atempo=${s}`);
+  return filters.join(",");
+}
+
+export type RotateAction =
+  | "rotate90"
+  | "rotate-90"
+  | "rotate180"
+  | "hflip"
+  | "vflip";
+
 export function useFFmpeg() {
   const [loaded, setLoaded] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -728,6 +752,532 @@ export function useFFmpeg() {
     }
   };
 
+  const changeVideoSpeed = async (
+    videoFile: File,
+    speed: number,
+  ): Promise<Blob> => {
+    if (!ffmpegRef.current || !loaded) {
+      throw new Error("FFmpeg is not loaded");
+    }
+    if (!Number.isFinite(speed) || speed <= 0.05 || speed > 8) {
+      throw new Error("Speed must be between 0.05 and 8");
+    }
+
+    setIsProcessing(true);
+    setProgress(0);
+
+    const ffmpeg = ffmpegRef.current;
+    const inputName = "input_speed.mp4";
+    const outputName = "output_speed.mp4";
+
+    const runWithAudio = async () => {
+      const atempo = buildAtempoChain(speed);
+      const pts = (1 / speed).toFixed(6);
+      await ffmpeg.exec([
+        "-i",
+        inputName,
+        "-filter_complex",
+        `[0:v]setpts=PTS*${pts}[v];[0:a]${atempo}[a]`,
+        "-map",
+        "[v]",
+        "-map",
+        "[a]",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "ultrafast",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "128k",
+        outputName,
+      ]);
+    };
+
+    const runVideoOnly = async () => {
+      const pts = (1 / speed).toFixed(6);
+      await ffmpeg.exec([
+        "-i",
+        inputName,
+        "-vf",
+        `setpts=PTS*${pts}`,
+        "-c:v",
+        "libx264",
+        "-preset",
+        "ultrafast",
+        "-an",
+        outputName,
+      ]);
+    };
+
+    try {
+      await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+      try {
+        await runWithAudio();
+      } catch (e) {
+        console.warn("Speed change with audio failed, retrying video-only:", e);
+        try {
+          await ffmpeg.deleteFile(outputName);
+        } catch {
+          /* ignore */
+        }
+        await runVideoOnly();
+      }
+
+      const data = await ffmpeg.readFile(outputName);
+      await ffmpeg.deleteFile(inputName);
+      await ffmpeg.deleteFile(outputName);
+
+      setProgress(100);
+      setTimeout(() => {
+        setIsProcessing(false);
+        setProgress(0);
+      }, 500);
+
+      return new Blob([new Uint8Array(data as Uint8Array)], {
+        type: "video/mp4",
+      });
+    } catch (error) {
+      setIsProcessing(false);
+      setProgress(0);
+      try {
+        await ffmpeg.deleteFile(inputName);
+      } catch {
+        /* ignore */
+      }
+      try {
+        await ffmpeg.deleteFile(outputName);
+      } catch {
+        /* ignore */
+      }
+      throw error;
+    }
+  };
+
+  const rotateVideo = async (
+    videoFile: File,
+    action: RotateAction,
+  ): Promise<Blob> => {
+    if (!ffmpegRef.current || !loaded) {
+      throw new Error("FFmpeg is not loaded");
+    }
+
+    setIsProcessing(true);
+    setProgress(0);
+
+    const ffmpeg = ffmpegRef.current;
+    const inputName = "input_rotate.mp4";
+    const outputName = "output_rotate.mp4";
+
+    const vfMap: Record<RotateAction, string> = {
+      rotate90: "transpose=1",
+      "rotate-90": "transpose=2",
+      rotate180: "transpose=1,transpose=1",
+      hflip: "hflip",
+      vflip: "vflip",
+    };
+    const vf = vfMap[action];
+
+    try {
+      await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+
+      await ffmpeg.exec([
+        "-i",
+        inputName,
+        "-vf",
+        vf,
+        "-c:v",
+        "libx264",
+        "-preset",
+        "ultrafast",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "128k",
+        outputName,
+      ]);
+
+      const data = await ffmpeg.readFile(outputName);
+      await ffmpeg.deleteFile(inputName);
+      await ffmpeg.deleteFile(outputName);
+
+      setProgress(100);
+      setTimeout(() => {
+        setIsProcessing(false);
+        setProgress(0);
+      }, 500);
+
+      return new Blob([new Uint8Array(data as Uint8Array)], {
+        type: "video/mp4",
+      });
+    } catch (error) {
+      setIsProcessing(false);
+      setProgress(0);
+      throw error;
+    }
+  };
+
+  const cropVideo = async (
+    videoFile: File,
+    w: number,
+    h: number,
+    x: number,
+    y: number,
+  ): Promise<Blob> => {
+    if (!ffmpegRef.current || !loaded) {
+      throw new Error("FFmpeg is not loaded");
+    }
+    if (![w, h, x, y].every((n) => Number.isFinite(n) && n >= 0)) {
+      throw new Error("Invalid crop dimensions");
+    }
+    if (w < 2 || h < 2) {
+      throw new Error("Crop size too small");
+    }
+
+    setIsProcessing(true);
+    setProgress(0);
+
+    const ffmpeg = ffmpegRef.current;
+    const inputName = "input_crop.mp4";
+    const outputName = "output_crop.mp4";
+
+    try {
+      await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+
+      await ffmpeg.exec([
+        "-i",
+        inputName,
+        "-vf",
+        `crop=${Math.floor(w)}:${Math.floor(h)}:${Math.floor(x)}:${Math.floor(y)}`,
+        "-c:v",
+        "libx264",
+        "-preset",
+        "ultrafast",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "128k",
+        outputName,
+      ]);
+
+      const data = await ffmpeg.readFile(outputName);
+      await ffmpeg.deleteFile(inputName);
+      await ffmpeg.deleteFile(outputName);
+
+      setProgress(100);
+      setTimeout(() => {
+        setIsProcessing(false);
+        setProgress(0);
+      }, 500);
+
+      return new Blob([new Uint8Array(data as Uint8Array)], {
+        type: "video/mp4",
+      });
+    } catch (error) {
+      setIsProcessing(false);
+      setProgress(0);
+      throw error;
+    }
+  };
+
+  const muteVideo = async (videoFile: File): Promise<Blob> => {
+    if (!ffmpegRef.current || !loaded) {
+      throw new Error("FFmpeg is not loaded");
+    }
+
+    setIsProcessing(true);
+    setProgress(0);
+
+    const ffmpeg = ffmpegRef.current;
+    const inputName = "input_mute.mp4";
+    const outputName = "output_mute.mp4";
+
+    try {
+      await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+
+      await ffmpeg.exec([
+        "-i",
+        inputName,
+        "-c:v",
+        "libx264",
+        "-preset",
+        "ultrafast",
+        "-an",
+        outputName,
+      ]);
+
+      const data = await ffmpeg.readFile(outputName);
+      await ffmpeg.deleteFile(inputName);
+      await ffmpeg.deleteFile(outputName);
+
+      setProgress(100);
+      setTimeout(() => {
+        setIsProcessing(false);
+        setProgress(0);
+      }, 500);
+
+      return new Blob([new Uint8Array(data as Uint8Array)], {
+        type: "video/mp4",
+      });
+    } catch (error) {
+      setIsProcessing(false);
+      setProgress(0);
+      throw error;
+    }
+  };
+
+  /** levelPercent 0–200 maps to volume multiplier 0–2 */
+  const adjustVolume = async (
+    videoFile: File,
+    levelPercent: number,
+  ): Promise<Blob> => {
+    if (!ffmpegRef.current || !loaded) {
+      throw new Error("FFmpeg is not loaded");
+    }
+    if (!Number.isFinite(levelPercent) || levelPercent < 0 || levelPercent > 200) {
+      throw new Error("Volume must be between 0 and 200%");
+    }
+
+    setIsProcessing(true);
+    setProgress(0);
+
+    const ffmpeg = ffmpegRef.current;
+    const inputName = "input_vol.mp4";
+    const outputName = "output_vol.mp4";
+    const mult = (levelPercent / 100).toFixed(4);
+
+    try {
+      await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+
+      await ffmpeg.exec([
+        "-i",
+        inputName,
+        "-af",
+        `volume=${mult}`,
+        "-c:v",
+        "copy",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "192k",
+        outputName,
+      ]);
+
+      const data = await ffmpeg.readFile(outputName);
+      await ffmpeg.deleteFile(inputName);
+      await ffmpeg.deleteFile(outputName);
+
+      setProgress(100);
+      setTimeout(() => {
+        setIsProcessing(false);
+        setProgress(0);
+      }, 500);
+
+      return new Blob([new Uint8Array(data as Uint8Array)], {
+        type: "video/mp4",
+      });
+    } catch (error) {
+      setIsProcessing(false);
+      setProgress(0);
+      throw error;
+    }
+  };
+
+  const extractThumbnail = async (
+    videoFile: File,
+    timestampSec: number,
+    format: "png" | "jpg" = "png",
+  ): Promise<Blob> => {
+    if (!ffmpegRef.current || !loaded) {
+      throw new Error("FFmpeg is not loaded");
+    }
+    if (!Number.isFinite(timestampSec) || timestampSec < 0) {
+      throw new Error("Invalid timestamp");
+    }
+
+    setIsProcessing(true);
+    setProgress(0);
+
+    const ffmpeg = ffmpegRef.current;
+    const inputName = "input_thumb.mp4";
+    const ext = format === "jpg" ? "jpg" : "png";
+    const outputName = `thumb.${ext}`;
+
+    try {
+      await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+
+      const args =
+        format === "jpg"
+          ? [
+              "-ss",
+              String(timestampSec),
+              "-i",
+              inputName,
+              "-frames:v",
+              "1",
+              "-q:v",
+              "2",
+              outputName,
+            ]
+          : [
+              "-ss",
+              String(timestampSec),
+              "-i",
+              inputName,
+              "-frames:v",
+              "1",
+              outputName,
+            ];
+
+      await ffmpeg.exec(args);
+
+      const data = await ffmpeg.readFile(outputName);
+      await ffmpeg.deleteFile(inputName);
+      await ffmpeg.deleteFile(outputName);
+
+      setProgress(100);
+      setTimeout(() => {
+        setIsProcessing(false);
+        setProgress(0);
+      }, 500);
+
+      return new Blob([new Uint8Array(data as Uint8Array)], {
+        type: format === "jpg" ? "image/jpeg" : "image/png",
+      });
+    } catch (error) {
+      setIsProcessing(false);
+      setProgress(0);
+      throw error;
+    }
+  };
+
+  const reverseVideo = async (
+    videoFile: File,
+    includeAudio: boolean,
+  ): Promise<Blob> => {
+    if (!ffmpegRef.current || !loaded) {
+      throw new Error("FFmpeg is not loaded");
+    }
+
+    setIsProcessing(true);
+    setProgress(0);
+
+    const ffmpeg = ffmpegRef.current;
+    const inputName = "input_rev.mp4";
+    const outputName = "output_rev.mp4";
+
+    try {
+      await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+
+      if (includeAudio) {
+        await ffmpeg.exec([
+          "-i",
+          inputName,
+          "-vf",
+          "reverse",
+          "-af",
+          "areverse",
+          "-c:v",
+          "libx264",
+          "-preset",
+          "ultrafast",
+          "-c:a",
+          "aac",
+          "-b:a",
+          "128k",
+          outputName,
+        ]);
+      } else {
+        await ffmpeg.exec([
+          "-i",
+          inputName,
+          "-vf",
+          "reverse",
+          "-c:v",
+          "libx264",
+          "-preset",
+          "ultrafast",
+          "-an",
+          outputName,
+        ]);
+      }
+
+      const data = await ffmpeg.readFile(outputName);
+      await ffmpeg.deleteFile(inputName);
+      await ffmpeg.deleteFile(outputName);
+
+      setProgress(100);
+      setTimeout(() => {
+        setIsProcessing(false);
+        setProgress(0);
+      }, 500);
+
+      return new Blob([new Uint8Array(data as Uint8Array)], {
+        type: "video/mp4",
+      });
+    } catch (error) {
+      setIsProcessing(false);
+      setProgress(0);
+      throw error;
+    }
+  };
+
+  /** Total plays = count (e.g. 3 plays the clip 3 times in a row). */
+  const loopVideo = async (videoFile: File, count: number): Promise<Blob> => {
+    if (!ffmpegRef.current || !loaded) {
+      throw new Error("FFmpeg is not loaded");
+    }
+    const n = Math.floor(count);
+    if (n < 2 || n > 10) {
+      throw new Error("Loop count must be between 2 and 10");
+    }
+
+    setIsProcessing(true);
+    setProgress(0);
+
+    const ffmpeg = ffmpegRef.current;
+    const inputName = "input_loop.mp4";
+    const outputName = "output_loop.mp4";
+
+    try {
+      await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+
+      await ffmpeg.exec([
+        "-stream_loop",
+        String(n - 1),
+        "-i",
+        inputName,
+        "-c:v",
+        "libx264",
+        "-preset",
+        "ultrafast",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "128k",
+        outputName,
+      ]);
+
+      const data = await ffmpeg.readFile(outputName);
+      await ffmpeg.deleteFile(inputName);
+      await ffmpeg.deleteFile(outputName);
+
+      setProgress(100);
+      setTimeout(() => {
+        setIsProcessing(false);
+        setProgress(0);
+      }, 500);
+
+      return new Blob([new Uint8Array(data as Uint8Array)], {
+        type: "video/mp4",
+      });
+    } catch (error) {
+      setIsProcessing(false);
+      setProgress(0);
+      throw error;
+    }
+  };
+
   return {
     loaded,
     isProcessing,
@@ -738,5 +1288,13 @@ export function useFFmpeg() {
     compressVideo,
     convertVideo,
     combineVideos,
+    changeVideoSpeed,
+    rotateVideo,
+    cropVideo,
+    muteVideo,
+    adjustVolume,
+    extractThumbnail,
+    reverseVideo,
+    loopVideo,
   };
 }

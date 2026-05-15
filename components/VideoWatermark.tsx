@@ -3,13 +3,19 @@
 import { useState, useRef, useEffect } from "react";
 import {
   Upload,
-  Droplet,
   Download,
   Type,
   Image as ImageIcon,
 } from "lucide-react";
 import VideoPlayer from "./VideoPlayer";
 import { useFFmpeg } from "@/hooks/useFFmpeg";
+import { appendProcessingHistory } from "@/lib/processingHistory";
+import {
+  BeforeAfterPreview,
+  ProcessingHistoryPanel,
+  VideoDropZone,
+  VideoMetadataPanel,
+} from "./VideoToolUi";
 
 export default function VideoWatermark() {
   const [videoFile, setVideoFile] = useState<File | null>(null);
@@ -25,6 +31,7 @@ export default function VideoWatermark() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [resultUrl, setResultUrl] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const { loaded, isProcessing, progress, addWatermark } = useFFmpeg();
@@ -48,13 +55,22 @@ export default function VideoWatermark() {
       .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
+  const applyVideoFile = (file: File) => {
+    if (!file.type.startsWith("video/")) return;
+    setResultUrl((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return null;
+    });
+    setVideoFile(file);
+    setVideoUrl((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return URL.createObjectURL(file);
+    });
+  };
+
   const handleVideoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file && file.type.startsWith("video/")) {
-      setVideoFile(file);
-      const url = URL.createObjectURL(file);
-      setVideoUrl(url);
-    }
+    if (file) applyVideoFile(file);
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,11 +107,17 @@ export default function VideoWatermark() {
       });
 
       const url = URL.createObjectURL(blob);
+      setResultUrl(url);
+      appendProcessingHistory({
+        tool: "Watermark",
+        fileName: `watermarked-${videoFile.name}`,
+        sizeBytes: blob.size,
+      });
+
       const a = document.createElement("a");
       a.href = url;
       a.download = `watermarked-${videoFile.name}`;
       a.click();
-      URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Export error:", error);
       const errorMessage =
@@ -120,8 +142,10 @@ export default function VideoWatermark() {
   };
 
   return (
+    <div className="space-y-4">
     <div className="bg-white dark:bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-zinc-800/50 p-6 shadow-sm dark:shadow-2xl">
       {!videoUrl ? (
+        <VideoDropZone onVideoFile={applyVideoFile}>
         <label
           htmlFor="video-upload-watermark"
           className="cursor-pointer block"
@@ -151,8 +175,15 @@ export default function VideoWatermark() {
             onChange={handleVideoUpload}
           />
         </label>
+        </VideoDropZone>
       ) : (
         <div className="space-y-6">
+          <VideoMetadataPanel
+            file={videoFile!}
+            videoRef={videoRef}
+            durationSeconds={duration}
+          />
+
           {/* Video Preview with Watermark Overlay */}
           <div className="bg-gray-50 dark:bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-zinc-800/50 p-6">
             <h3 className="text-gray-900 dark:text-white font-semibold text-lg mb-4">
@@ -199,6 +230,8 @@ export default function VideoWatermark() {
               </div>
             </div>
           </div>
+
+          <BeforeAfterPreview originalUrl={videoUrl} resultUrl={resultUrl} />
 
           {/* Watermark Options */}
           <div className="bg-gray-50 dark:bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-zinc-800/50 p-4">
@@ -361,7 +394,10 @@ export default function VideoWatermark() {
                   type="file"
                   accept="video/*"
                   className="hidden"
-                  onChange={handleVideoUpload}
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) applyVideoFile(f);
+                  }}
                 />
               </label>
               <button
@@ -385,6 +421,8 @@ export default function VideoWatermark() {
           </div>
         </div>
       )}
+    </div>
+    <ProcessingHistoryPanel />
     </div>
   );
 }

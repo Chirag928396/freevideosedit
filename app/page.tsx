@@ -12,6 +12,12 @@ import {
   Image as ImageIcon,
   Music,
   Smartphone,
+  RotateCw,
+  Crop,
+  VolumeX,
+  Volume2,
+  Repeat,
+  Rewind,
 } from "lucide-react";
 import Link from "next/link";
 import Footer from "@/components/Footer";
@@ -298,6 +304,122 @@ export default function Home() {
               <p className="text-gray-600 dark:text-zinc-400 text-sm">
                 Compress clips for Instagram, TikTok, YouTube Shorts,
                 WhatsApp, Discord, email, and reviews.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/video-speed" className="group">
+            <div className="h-full rounded-xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-gray-400 hover:shadow-lg dark:border-zinc-800/50 dark:bg-zinc-900/50 dark:hover:border-white/50">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 transition-transform group-hover:scale-110">
+                <Gauge className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
+                Change Speed
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-zinc-400">
+                Slow motion or fast-forward with pitch-aware audio when
+                available.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/video-rotate" className="group">
+            <div className="h-full rounded-xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-gray-400 hover:shadow-lg dark:border-zinc-800/50 dark:bg-zinc-900/50 dark:hover:border-white/50">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 transition-transform group-hover:scale-110">
+                <RotateCw className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
+                Rotate &amp; Flip
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-zinc-400">
+                Fix orientation with 90°/180° turns or mirror horizontally and
+                vertically.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/video-crop" className="group">
+            <div className="h-full rounded-xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-gray-400 hover:shadow-lg dark:border-zinc-800/50 dark:bg-zinc-900/50 dark:hover:border-white/50">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 transition-transform group-hover:scale-110">
+                <Crop className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
+                Crop Video
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-zinc-400">
+                Center-crop to 16:9, 9:16, 1:1, 4:3, or enter custom pixel
+                crops.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/video-mute" className="group">
+            <div className="h-full rounded-xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-gray-400 hover:shadow-lg dark:border-zinc-800/50 dark:bg-zinc-900/50 dark:hover:border-white/50">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-slate-600 to-zinc-800 transition-transform group-hover:scale-110">
+                <VolumeX className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
+                Remove Audio
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-zinc-400">
+                Export a silent MP4 for presentations, B-roll, or muted
+                uploads.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/video-volume" className="group">
+            <div className="h-full rounded-xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-gray-400 hover:shadow-lg dark:border-zinc-800/50 dark:bg-zinc-900/50 dark:hover:border-white/50">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-blue-600 transition-transform group-hover:scale-110">
+                <Volume2 className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
+                Volume
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-zinc-400">
+                Boost quiet clips or lower loud audio from 0% to 200%.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/video-thumbnail" className="group">
+            <div className="h-full rounded-xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-gray-400 hover:shadow-lg dark:border-zinc-800/50 dark:bg-zinc-900/50 dark:hover:border-white/50">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-rose-500 to-pink-600 transition-transform group-hover:scale-110">
+                <ImageIcon className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
+                Thumbnail / Frame
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-zinc-400">
+                Save a single frame as PNG or JPG at any timestamp.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/video-reverse" className="group">
+            <div className="h-full rounded-xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-gray-400 hover:shadow-lg dark:border-zinc-800/50 dark:bg-zinc-900/50 dark:hover:border-white/50">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-800 transition-transform group-hover:scale-110">
+                <Rewind className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
+                Reverse Video
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-zinc-400">
+                Play footage backwards; optional audio reverse for short clips.
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/video-loop" className="group">
+            <div className="h-full rounded-xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-gray-400 hover:shadow-lg dark:border-zinc-800/50 dark:bg-zinc-900/50 dark:hover:border-white/50">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-lime-500 to-emerald-700 transition-transform group-hover:scale-110">
+                <Repeat className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
+                Loop Video
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-zinc-400">
+                Repeat the same clip 2–10 times in one exported file.
               </p>
             </div>
           </Link>
